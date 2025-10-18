@@ -4,28 +4,23 @@
 	let { data }: PageProps = $props();
 </script>
 
-<h1>Biznisový proces {data.code}</h1>
-
-názov: {data.name} <br/>
-popis: {data.description} <br/>
-typ: {data.process_type.name} <br/>
-zodpovedný: <a href={UI_ROLE_GET(data.responsible)}>{data.responsible.name}</a><br/>
-
-<h2>príslušné aplikáčné roly</h2>
+<h1>Roly</h1>
 
 <table>
     <thead>
         <tr>
             <td>kód</td>
             <td>názov</td>
+            <td>popis</td>
             <td></td>
         </tr>
     </thead>
     <tbody>
-    {#each data.assigned_roles as role}
+    {#each data.data as role}
     <tr>
         <td>{role.code}</td>
         <td>{role.name}</td>
+        <td>{role.description}</td>
         <td><a href={UI_ROLE_GET(role)}>pozri</a></td>
     </tr>
     {/each}

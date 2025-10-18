@@ -21,7 +21,7 @@
   top: 0; /* Stay at the top */
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
-  background-color: gray;
+  background-color: lightgray;
   padding-top: 2em; /* Place content 60px from the top */
 }
 table {
@@ -39,7 +39,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 <div class="sidenav">
 <ul>
-	<li> <a href="#">Organizačné informácie</a> 
+	<li> <a href="/">Organizačné informácie</a> 
 		<ul>
 			<li>
 				<a href="/organization-info/business-process">biznisové procesy</a>
@@ -51,7 +51,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 				<a href="#">osoby</a>
 			</li>
 			<li>
-				<a href="#">roly</a>
+				<a href="/organization-info/role">roly</a>
 			</li>
 			<li>
 				<a href="#">it systémy</a>
