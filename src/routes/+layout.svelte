@@ -1,6 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
-	import { UI_APPLICATION_LIST, UI_BSI_MODULES_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST} from '$lib/routes';
+	import { UI_APPLICATION_LIST, UI_BSI_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST} from '$lib/routes';
 
 	let { children } = $props();
 </script>
@@ -12,10 +12,7 @@
 <style>
 /* The side navigation menu */
 .content {
-  margin-left: 250px;
-}
-.sidenav {
-  height: 100%; /* 100% Full-height */
+  margin-left: 250px; } .sidenav { height: 100%; /* 100% Full-height */
   width: 250px; /* 0 width - change this with JavaScript */
   position: fixed;
   z-index: 1; /* Stay on top */
@@ -41,7 +38,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 <div class="sidenav">
 <ul>
 	<li> 
-		<a href={UI_BSI_MODULES_LIST()}>Moduly BSI IT-Grundschutz Kompendium</a>
+		<a href={UI_BSI_MODULE_LIST()}>Moduly BSI IT-Grundschutz Kompendium</a>
 	</li>
 	<li> <a href="/">Organizačné informácie</a> 
 		<ul>
@@ -55,16 +52,10 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 				<a href={UI_APPLICATION_LIST()}>aplikácie</a>
 			</li>
 			<li>
+				<a href={UI_IT_SYSTEM_LIST()}>IT systémy</a>
+			</li>
+			<li hidden>
 				<a href="#">miestnosti</a>
-			</li>
-			<li>
-				<a href="#">osoby</a>
-			</li>
-			<li>
-				<a href="#">it systémy</a>
-			</li>
-			<li>
-				<a href="#">technika</a>
 			</li>
 		</ul>
 	</li>
