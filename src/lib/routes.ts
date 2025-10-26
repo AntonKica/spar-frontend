@@ -5,6 +5,7 @@ export const SVC_ROLE_LIST = (): string => `/svc/role/`;
 export const SVC_ROLE_GET = (code: string): string => `/svc/role/${code}`;
 export const SVC_APPLICATION_LIST = (): string => `/svc/application/`;
 export const SVC_APPLICATION_GET = (code: string): string => `/svc/application/${code}`;
+export const SVC_BUSINESS_PROCESS_APPLICATION_LIST = ():string => '/svc/business-process-application/';
 export const SVC_IT_SYSTEM_LIST = (): string => `/svc/it-system/`;
 export const SVC_IT_SYSTEM_GET = (code: string): string => `/svc/it-system/${code}`;
 export const SVC_ENUM_MODULE_LIST = (): string => `/svc/enum/module-type/`;
@@ -19,3 +20,4 @@ export const UI_APPLICATION_LIST = (): string => `/organization-info/application
 export const UI_APPLICATION_GET = (entity: any): string => `/organization-info/application/${entity.code}`;
 export const UI_IT_SYSTEM_LIST = (): string => `/organization-info/it-system`;
 export const UI_IT_SYSTEM_GET = (entity: any): string => `/organization-info/it-system/${entity.code}`;
+export const UI_TABLES = (): string => `/organization-info/tables`;

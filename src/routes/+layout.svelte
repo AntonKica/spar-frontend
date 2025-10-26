@@ -1,6 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
-	import { UI_APPLICATION_LIST, UI_BSI_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST} from '$lib/routes';
+	import { UI_APPLICATION_LIST, UI_BSI_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST, UI_TABLES} from '$lib/routes';
 
 	let { children } = $props();
 </script>
@@ -53,6 +53,9 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 			</li>
 			<li>
 				<a href={UI_IT_SYSTEM_LIST()}>IT systémy</a>
+			</li>
+			<li>
+				<a href={UI_TABLES()}>tabuľky</a>
 			</li>
 			<li hidden>
 				<a href="#">miestnosti</a>
