@@ -1,6 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
-	import { UI_APPLICATION_LIST, UI_BSI_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST, UI_TABLES} from '$lib/routes';
+	import { UI_APPLICATION_LIST, UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST, UI_TABLES, UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST} from '$lib/routes';
 
 	let { children } = $props();
 </script>
@@ -37,8 +37,15 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 <div class="sidenav">
 <ul>
-	<li> 
-		<a href={UI_BSI_MODULE_LIST()}>Moduly BSI IT-Grundschutz Kompendium</a>
+	<li> <a href="/">BSI IT-Grundschutz Kompendium</a> 
+		<ul>
+		<li>
+			<a href={UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST()}>Moduly</a>		
+		</li>
+		<li>
+		<a href={UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST()}>Hrozby</a>
+		</li>
+		</ul>
 	</li>
 	<li> <a href="/">Organizačné informácie</a> 
 		<ul>

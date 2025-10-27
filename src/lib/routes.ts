@@ -8,10 +8,13 @@ export const SVC_APPLICATION_GET = (code: string): string => `/svc/application/$
 export const SVC_BUSINESS_PROCESS_APPLICATION_LIST = ():string => '/svc/business-process-application/';
 export const SVC_IT_SYSTEM_LIST = (): string => `/svc/it-system/`;
 export const SVC_IT_SYSTEM_GET = (code: string): string => `/svc/it-system/${code}`;
-export const SVC_ENUM_MODULE_LIST = (): string => `/svc/enum/module-type/`;
+export const SVC_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST = (): string => `/svc/enum/bsi-it-grundschutz-module/`;
+export const SVC_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST = (): string => `/svc/enum/bsi-it-grundschutz-elementary-threat/`;
 
-export const UI_BSI_MODULE_LIST = (): string => `/bsi-module`;
-export const UI_BSI_MODULE_GET = (entity: any): string => `/bsi-module/${entity.code}`;
+export const UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST = (): string => `/bsi-it-grundschutz-module`;
+export const UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_GET = (entity: any): string => `/bsi-it-grundschutz-module/${entity.code}`;
+export const UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST = (): string => `/bsi-it-grundschutz-elementary-threat`;
+export const UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_GET = (entity: any): string => `/bsi-it-grundschutz-elementary-threat/${entity.code}`;
 export const UI_BUSINESS_PROCESS_LIST = (): string => `/organization-info/business-process`;
 export const UI_BUSINESS_PROCESS_GET = (entity: any): string => `/organization-info/business-process/${entity.code}`;
 export const UI_ROLE_LIST = (): string => `/organization-info/role`;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UI_BSI_MODULE_GET } from '$lib/routes';
+	import { UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_GET } from '$lib/routes';
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
 </script>

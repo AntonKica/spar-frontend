@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
-	import {UI_BSI_MODULE_GET} from '$lib/routes';
+	import {UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_GET} from '$lib/routes';
 	let { data }: PageProps = $props();
 </script>
 
@@ -14,10 +14,10 @@
         </tr>
     </thead>
     <tbody>
-    {#each data.data as bsiModule}
+    {#each data.data as module}
     <tr>
-        <td>{bsiModule.name}</td>
-        <td><a href={UI_BSI_MODULE_GET(bsiModule)}>pozri</a></td>
+        <td>{module.name}</td>
+        <td><a href={UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_GET(module)}>pozri</a></td>
     </tr>
     {/each}
     </tbody>
