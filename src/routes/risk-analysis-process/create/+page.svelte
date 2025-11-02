@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
     import { goto } from '$app/navigation';
+	import { create_post_request, UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
 
 	let { data }: PageProps = $props();
 
     const get_objects_under_review = () => {
-         return data.asset_list.filter(asset => asset.add_under_review).map(asset => asset.code)       
+         return data.asset_list.filter((asset: object) => asset.add_under_review).map(asset => asset.code)       
     }
 
     async function post() {
@@ -15,26 +16,16 @@
             return;
         }
         
-        console.log(objects_under_review);
-        const res = await fetch('/svc/risk-analysis-process/create', {
-			method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(
-                {
-                    target_objects_under_review: objects_under_review
-        })
-		})
+        const post_body = { target_objects_under_review: objects_under_review };
+        const res = await fetch('/svc/risk-analysis-process/create', create_post_request(post_body))
 		
 		const json = await res.json()
         if (json.status != "ok") {
-            console.alert("Chyba pri vytvarani" + json.message)
+            alert("Chyba pri vytvarani" + json.message)
             return;
         }
 
-        const code = json.code;
-
-        goto(`/risk-analysis-process/${code}/view`) 
-        //const res = await()
+        goto(UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_threat_overview(json.data.code));
     }
 </script>
 

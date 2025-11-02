@@ -7,6 +7,5 @@ export const load: PageLoad = async ({ fetch }) => {
     const res = {
         asset_list: data.data
     };
-    console.log(res)
     return res;
 }

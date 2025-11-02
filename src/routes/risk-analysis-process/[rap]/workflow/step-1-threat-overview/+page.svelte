@@ -1,0 +1,47 @@
+<script lang="ts">
+	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+	import type { PageProps } from './$types';
+	let { data }: PageProps = $props();
+</script>
+<style>
+    .box {
+        background-color: lightgray;
+        border: 2px solid black;
+        margin: 20px;
+        padding: 20px;
+        width: 10em;
+        height: 10em;
+    }
+
+    .bad {
+        background-color: lightcoral;
+    }
+    .good {
+        background-color: greenyellow;
+    }
+</style>
+<h1>Určenie relevantných hrozieb</h1>
+
+V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na posúdenie.
+
+<table>
+    <thead>
+        <tr>
+            <th>kód aktíva</th>
+            <th>názov aktíva</th>
+            <th>identifikované základné hrozby</th>
+            <th>identifikované dodatočné hrozby</th>
+        </tr>
+    </thead>
+    <tbody>
+{#each data.threat_overview_list as tour }
+        <tr>
+        <td>{tour.asset_code}</td>
+        <td>{tour.asset_name}</td>
+        <td class={tour.identified_basic_threat ? "good" : "bad"}>{tour.identified_basic_threat ? "✅" : "❌"} <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_1_elementary_threat(data.rap_code, tour.asset_code)}>UPRAV</a></td>
+        <td class={tour.identified_supplement_threat ? "good" : "bad"}>{tour.identified_supplement_threat ? "✅" : "❌"}</td>
+        </tr>
+{/each}
+    </tbody>
+</table>
+<!-- ASSETS AND THEIR STATUS -->
