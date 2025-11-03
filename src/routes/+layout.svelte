@@ -38,6 +38,15 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 <div class="sidenav">
 <ul>
+	<li>  <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.ui()}>Proces analýzi rizík </a>
+		<ul>
+		<li>
+			<a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.list()}>Zoznam analýz</a>		
+		</li>
+		</ul>
+	</li>
+	<li> zatiál nezaradené pre kontrolu
+		<ul>
 	<li> <a href="/">BSI IT-Grundschutz Kompendium</a> 
 		<ul>
 		<li>
@@ -70,13 +79,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 			</li>
 		</ul>
 	</li>
-	<li> Proces analýzi rizík 
-		<ul>
-		<li>
-			<a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.list()}>Zoznam analýz</a>		
-		</li>
-		</ul>
-	</li>
+</ul>
 </ul>
 </div>
 <div class="content">

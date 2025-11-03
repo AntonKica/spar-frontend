@@ -8,6 +8,9 @@ export const create_post_request = (entity: object): object => {
 
 
 class UiRiskAnalysissProcessWorkflow {
+    ui(): string {
+        return `/risk-analysis-process`;
+    }
     list(): string {
         return `/risk-analysis-process/list`;
     }

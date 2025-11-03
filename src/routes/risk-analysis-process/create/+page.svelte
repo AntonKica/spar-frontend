@@ -30,6 +30,9 @@
 </script>
 
 <h1> Vytváranie procesu analýzy rizík</h1>
+<small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.ui()}>Vráť sa o krok vyššie.</a> </small>
+<br> <br>
+
 
 Zační nový proces analýzy rizík: <button type="button" on:click={post}>X</button>
 

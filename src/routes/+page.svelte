@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { UI_RISK_ANALYSIS_CREATE } from "$lib/routes";
-
 </script>
 <style>
     .box {
@@ -13,7 +12,3 @@
     }
 </style>
 <h1>SPAR - Systém na podporu analýzy rizík</h1>
-
-<div class="box">
-<a href={UI_RISK_ANALYSIS_CREATE()}>Začni novú analýzu rizík</a>
-</div>

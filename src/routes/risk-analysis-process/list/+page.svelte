@@ -5,7 +5,10 @@
 	let { data }: PageProps = $props();
 </script>
 
-<h1>Hrozby BSI IT-Grundschutz Kompendium</h1>
+<h1>Prehľad procesov analýzy rizík</h1>
+
+<small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.ui()}>Vráť sa o krok vyššie.</a> </small>
+<br> <br>
 
 <table>
     <thead>
