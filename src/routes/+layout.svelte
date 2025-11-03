@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
 	import favicon from '$lib/assets/favicon.svg';
 	import { UI_APPLICATION_LIST, UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST, UI_TABLES, UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST} from '$lib/routes';
 
@@ -67,6 +68,13 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 			<li hidden>
 				<a href="#">miestnosti</a>
 			</li>
+		</ul>
+	</li>
+	<li> Proces analýzi rizík 
+		<ul>
+		<li>
+			<a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.list()}>Zoznam analýz</a>		
+		</li>
 		</ul>
 	</li>
 </ul>

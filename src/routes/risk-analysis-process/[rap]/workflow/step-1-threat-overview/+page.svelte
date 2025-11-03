@@ -21,6 +21,8 @@
     }
 </style>
 <h1>Určenie relevantných hrozieb</h1>
+<small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.list()}>Vráť sa o krok vyššie.</a></small>
+<br> <br>
 
 V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na posúdenie.
 
