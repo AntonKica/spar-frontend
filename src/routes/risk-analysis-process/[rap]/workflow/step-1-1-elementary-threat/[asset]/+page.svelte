@@ -20,7 +20,6 @@
     }
 
     async function post_changes() {
-
         const post_data = elementary_threat_list.map((e: any) => {
             return {
                 elementary_threat_code: e.elementary_threat_code,
@@ -29,7 +28,6 @@
                 reviewed: e.reviewed,
             };
         });
-        console.log(post_data)
 
         
         const res = await fetch(

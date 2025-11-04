@@ -6,6 +6,12 @@ export const create_post_request = (entity: object): object => {
     }
 }
 
+export const create_delete_request = (): object => {
+    return {
+        method: 'DELETE',
+    }
+}
+
 
 class UiRiskAnalysissProcessWorkflow {
     ui(): string {
@@ -23,6 +29,7 @@ class UiRiskAnalysissProcessWorkflow {
     step_1_threat_overview_list(code: string): string {
         return `/svc/risk-analysis-process/${code}/threat-overview/`;
     }
+    
     step_1_1_elementary_threat(code: string, asset: string): string {
         return `/risk-analysis-process/${code}/workflow/step-1-1-elementary-threat/${asset}`;
     }
@@ -31,6 +38,21 @@ class UiRiskAnalysissProcessWorkflow {
     }
     step_1_1_elementary_threat_update(code: string, asset: string): string {
         return `/svc/risk-analysis-process/${code}/elementary-threat/${asset}`;
+    }
+    step_1_2_specific_threat(code: string, asset: string): string {
+        return `/risk-analysis-process/${code}/workflow/step-1-2-specific-threat/${asset}`;
+    }
+    step_1_2_specific_list(code: string, asset: string): string {
+        return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/`;
+    }
+    step_1_2_specific_create(code: string, asset: string): string {
+        return `/svc/risk-analysis-process/${code}/specific-threat/${asset}`;
+    }
+    step_1_2_specific_update(code: string, asset: string, threat: string): string {
+        return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/${threat}`;
+    }
+    step_1_2_specific_delete(code: string, asset: string, threat: string): string {
+        return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/${threat}`;
     }
 };
 
