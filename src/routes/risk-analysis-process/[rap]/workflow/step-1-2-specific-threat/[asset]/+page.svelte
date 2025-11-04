@@ -72,6 +72,20 @@
         alert("Špecifická hrozba bola úspešné vymazaná")
         invalidateAll()
     }
+
+    async function set_specific_threat_reviewed(value: boolean) {
+        const res = await fetch(
+            UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_2_specific_reviewed(data.rap, data.asset, value), 
+            create_post_request({})
+        );
+        
+        if(res.status != 200) {
+            alert("Chyba pri zmene stavu preskúmania: " + res.statusText)
+            return;
+        }
+        alert(`Špecifické hrozby boli úspešne nastavené na ${value ? 'preskúmané' : 'nepreskúmané'}`);
+        invalidateAll()
+    }
 </script>
 <style>
     .box {
@@ -97,9 +111,13 @@
 <par>
 V tomto kroku identifikujete špecifické hrozby pre cieľový objekt na posúdenie.
 </par>
+<br><br>
 
-<br>
-Špecifické hrozby pre aktívum sú preskúmané: <input type="button" value="Nie" onclick={() => {}}>
+{#if data.specific_threat_overview.reviewed}
+Špecifické hrozby pre aktívum sú preskúmané ✅ <input type="button" value="Nastav na nepreskúmané" onclick={() => set_specific_threat_reviewed(false)}>
+{:else}
+Špecifické hrozby pre aktívum nie sú preskúmané ❌ <input type="button" value="Nastav na preskúmané" onclick={() => set_specific_threat_reviewed(true)}>
+{/if}
 <br> <br>
 
 <h2>Pridaj novú špecifickú hrozbu</h2>

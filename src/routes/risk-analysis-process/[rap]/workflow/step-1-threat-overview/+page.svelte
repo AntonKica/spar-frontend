@@ -44,8 +44,8 @@ V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na 
             {tour.identified_basic_threat ? "✅" : "❌"}
             <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_1_elementary_threat(data.rap_code, tour.asset_code)}> UPRAV</a>
         </td>
-        <td class={tour.identified_supplement_threat ? "good" : "bad"}>
-            {tour.identified_supplement_threat ? "✅" : "❌"}
+        <td class={tour.identified_specific_threat ? "good" : "bad"}>
+            {tour.identified_specific_threat ? "✅" : "❌"}
             <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_2_specific_threat(data.rap_code, tour.asset_code)}>UPRAV</a>
         </td>
         </tr>

@@ -45,6 +45,9 @@ class UiRiskAnalysissProcessWorkflow {
     step_1_2_specific_list(code: string, asset: string): string {
         return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/`;
     }
+    step_1_2_specific_overview(code: string, asset: string): string {
+        return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/overview`;
+    }
     step_1_2_specific_create(code: string, asset: string): string {
         return `/svc/risk-analysis-process/${code}/specific-threat/${asset}`;
     }
@@ -53,6 +56,9 @@ class UiRiskAnalysissProcessWorkflow {
     }
     step_1_2_specific_delete(code: string, asset: string, threat: string): string {
         return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/${threat}`;
+    }
+    step_1_2_specific_reviewed(code: string, asset: string, value: boolean): string {
+        return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/overview/reviewed/${value}`;
     }
 };
 
