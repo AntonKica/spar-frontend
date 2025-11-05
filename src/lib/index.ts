@@ -12,6 +12,10 @@ export const create_delete_request = (): object => {
     }
 }
 
+export const enum_to_name = (code: string, l: object[]) => {
+    return l.find((e) => e.code === code).name;
+}
+
 
 class UiRiskAnalysissProcessWorkflow {
     ui(): string {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW, enum_to_name } from '$lib';
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
 </script>
@@ -31,6 +31,9 @@ V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na 
         <tr>
             <th>kód aktíva</th>
             <th>názov aktíva</th>
+            <th>dôvernosť</th>
+            <th>integrita</th>
+            <th>dostupnosť</th>
             <th>identifikované základné hrozby</th>
             <th>identifikované dodatočné hrozby</th>
         </tr>
@@ -40,6 +43,9 @@ V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na 
         <tr>
         <td>{tour.asset_code}</td>
         <td>{tour.asset_name}</td>
+        <td>{enum_to_name(tour.confidentiality_protection_needs, data.protection_needs_enum)}</td>
+        <td>{enum_to_name(tour.integrity_protection_needs, data.protection_needs_enum)}</td>
+        <td>{enum_to_name(tour.availability_protection_needs, data.protection_needs_enum)}</td>
         <td class={tour.identified_basic_threat ? "good" : "bad"}>
             {tour.identified_basic_threat ? "✅" : "❌"}
             <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_1_elementary_threat(data.rap_code, tour.asset_code)}> UPRAV</a>

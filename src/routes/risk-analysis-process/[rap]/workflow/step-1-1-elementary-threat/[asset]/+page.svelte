@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { create_post_request, UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+	import { create_post_request, enum_to_name, UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
 	import type { PageProps } from './$types';
 	let { data = $bindable() }: PageProps = $props();
 
@@ -13,10 +13,6 @@
         } else {
             return "irrelevant";
         }
-    }
-
-    const elementary_therat_to_name = (code: string) => {
-        return data.elementary_threat_enum.find((e) => e.code === code).name;
     }
 
     async function post_changes() {
@@ -93,9 +89,9 @@ Keď skončíš s úpravami, tak <input type="button" value="Ulož zmeny" onclic
         </tr>
     </thead>
     <tbody>
-{#each elementary_threat_list as threat, index}
+{#each elementary_threat_list as threat}
         <tr>
-        <td>{elementary_therat_to_name(threat.elementary_threat_code)}</td>
+        <td>{enum_to_name(threat.elementary_threat_code, data.elementary_threat_enum)}</td>
         <td class={relevance_to_class(threat)}>
             <select bind:value={threat.relevance} class={relevance_to_class(threat)}>
             {#each data.elementary_threat_relevance_enum as elementary_threat_relevance}
