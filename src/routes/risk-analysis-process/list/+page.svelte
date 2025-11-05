@@ -23,7 +23,7 @@
     <tr>
         <td>{risk_analysis_process.code}</td>
         <td>{risk_analysis_process.created_on}</td>
-        <td><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_threat_overview(risk_analysis_process.code)}>pozri</a></td>
+        <td><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.view(risk_analysis_process.code)}>pozri</a></td>
     </tr>
     {/each}
     </tbody>

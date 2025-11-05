@@ -24,7 +24,8 @@
             alert("Chyba pri vytvarani" + json.message)
             return;
         }
-
+        
+        alert("Proces analýzy rizík bol úspešne iniciovaný")
         goto(UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_threat_overview(json.data.code));
     }
 </script>

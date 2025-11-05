@@ -20,7 +20,7 @@
         background-color: greenyellow;
     }
 </style>
-<h1>Určenie relevantných hrozieb</h1>
+<h1>Klasifikácia rizík</h1>
 <small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.view(data.rap_code)}>Vráť sa o krok vyššie.</a></small>
 <br> <br>
 

@@ -5,6 +5,6 @@ export const load: PageLoad = async ({ params, fetch }) => {
     //const data = await fetch(`/svc/risk-analysis-process/${params.rap}`).then(r => r.json());
 
     return {
-        code: params.rap
+        rap: params.rap
     };
 };
