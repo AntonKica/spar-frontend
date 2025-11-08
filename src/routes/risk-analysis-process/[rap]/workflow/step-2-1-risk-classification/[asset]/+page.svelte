@@ -101,16 +101,22 @@
         color: crimson;
     }
 </style>
-<h1>Klasifikácia rizík {data.rap}</h1>
-
+<h1>Klasifikácia rizík  </h1>
 <small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_2_risk_classification(data.rap)}>Vráť sa o krok vyššie.</a> </small>
 <br> <br>
+
+<b>Kód:</b> {data.rap} <br>
+<b>Názov:</b>{data.asset.name}<br>
+<b>Dôvernosť:</b> {enum_to_name(data.asset.confidentiality_protection_needs, data.protection_needs_enum)}<br>
+<b>Integrita:</b> {enum_to_name(data.asset.integrity_protection_needs, data.protection_needs_enum)}<br>
+<b>Dostupnosť:</b> {enum_to_name(data.asset.availability_protection_needs, data.protection_needs_enum)}<br>
+<br>
 
 V tomto kroku vyhodnotíte riziká vyplývajúce z elementárnych a špecifckých hrozieb.
 
 <br> <br>
 
-<h2>elementárne hrozby</h2>
+<h2>Elementárne hrozby</h2>
 {#each elementary_threat_risk_classification_list as elementary_threat_risk_classification}
 <div class="box">
     <h3>Hrozba {enum_to_name(elementary_threat_risk_classification.tour_elementary_threat_code, data.elementary_threat_enum)}</h3>
@@ -146,7 +152,7 @@ V tomto kroku vyhodnotíte riziká vyplývajúce z elementárnych a špecifckýc
     <input type="button" onclick={() => update_elementary_threat_risk_classification(elementary_threat_risk_classification)} value="✔ aktualizuj">
 </div>
 {/each}
-<h2>špecifické hrozby</h2>
+<h2>Špecifické hrozby</h2>
 {#each specific_threat_risk_classification_list as specific_threat_risk_classification}
 <div class="box">
     <h3>Hrozba {specific_threat_risk_classification.tour_specific_threat_code}</h3>
