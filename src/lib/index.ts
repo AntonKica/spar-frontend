@@ -88,6 +88,24 @@ class UiRiskAnalysissProcessWorkflow {
     step_2_1_risk_classification_specific_update(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-2-1-risk-classification/[asset]">, threat: string): string {
         return `/svc/risk-analysis-process/${params.rap}/risk-classification/${params.asset}/specific-threat/${threat}`;
     }
+    step_2_risk_classification_finish(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-2-risk-classification">, threat: string): string {
+        return `/svc/risk-analysis-process/${params.rap}/step-2-risk-classification/finish`;
+    }
+    step_3_risk_treatment(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-3-risk-treatment">): string {
+        return `/risk-analysis-process/${params.rap}/workflow/step-3-risk-treatment`;
+    }
+    step_3_1_risk_treatment(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-3-risk-treatment">, asset: string): string {
+        return `/risk-analysis-process/${params.rap}/workflow/step-3-1-risk-treatment/${asset}`;
+    }
+    step_3_1_risk_treatment_get(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-3-1-risk-treatment/[asset]">): string {
+        return `/svc/risk-analysis-process/${params.rap}/risk-treatment/${params.asset}/`;
+    }
+    step_3_1_risk_treatment_elementary_update(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-3-1-risk-treatment/[asset]">, threat: string): string {
+        return `/svc/risk-analysis-process/${params.rap}/risk-treatment/${params.asset}/elementary-threat/${threat}`;
+    }
+    step_3_1_risk_treatment_specific_update(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-3-1-risk-treatment/[asset]">, threat: string): string {
+        return `/svc/risk-analysis-process/${params.rap}/risk-treatment/${params.asset}/specific-threat/${threat}`;
+    }
 };
 
 export const UI_RISK_ANALYSIS_PROCESS_WORKFLOW = new UiRiskAnalysissProcessWorkflow();

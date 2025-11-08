@@ -1,7 +1,28 @@
 <script lang="ts">
-	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW, enum_to_name } from '$lib';
+	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW, create_post_request, enum_to_name } from '$lib';
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
+
+    async function finish_step(threat: any) {
+        const res = await fetch(
+            UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_2_risk_classification_finish(data.params), 
+            create_post_request({})
+        );
+        
+        if(res.status != 200) {
+            alert("Chyba pri zakončení kroku: " + res.statusText)
+            return;
+        }
+         
+		const json = await res.json()
+        if (json.status != "ok") {
+            alert("Chyba pri zakončení kroku: " + json.message)
+            return;
+        }
+
+        alert("Klasifikácia rizík bola zakončená!")
+        goto(UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_2_risk_classification(data.params))
+    }
 </script>
 <style>
     .box {
@@ -21,8 +42,12 @@
     }
 </style>
 <h1>Klasifikácia rizík</h1>
-<small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.view(data.rap_code)}>Vráť sa o krok vyššie.</a></small>
-<br> <br>
+<small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.view(data.params.rap)}>Vráť sa o krok vyššie.</a></small>
+<br><br>
+
+Klasifikáciu rizík pre cieľové objekty na preskǔmanie sme dokončili. <input type="button" onclick={finish_step} value="Prejsť na ďalší krok: ošetrenie rizka.">
+<br>
+<br>
 
 <table>
     <thead>

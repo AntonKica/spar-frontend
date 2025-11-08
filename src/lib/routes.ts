@@ -15,6 +15,7 @@ export const SVC_ENUM_PROTECTION_NEEDS_LIST = (): string => `/svc/enum/protectio
 export const SVC_ENUM_FREQUNCY_OF_OCCURRENCE_LIST = (): string => `/svc/enum/frequency-of-occurrence/`;
 export const SVC_ENUM_POTENTIAL_DAMAGE_LIST = (): string => `/svc/enum/potential-damage/`;
 export const SVC_ENUM_POTENTIAL_RISK_LIST = (): string => `/svc/enum/potential-risk/`;
+export const SVC_ENUM_RISK_TREATMENT_LIST = (): string => `/svc/enum/risk-treatment/`;
 export const SVC_ASSET_LIST = (): string => `/svc/asset/`;
 export const SVC_ASSET_GET = (code: string): string => `/svc/asset/${code}`;
 
