@@ -12,6 +12,9 @@ export const SVC_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST = (): string => `/svc/enum/b
 export const SVC_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST = (): string => `/svc/enum/bsi-it-grundschutz-elementary-threat/`;
 export const SVC_ENUM_ELEMENTARY_THREAT_RELEVANCE_LIST = (): string => `/svc/enum/elementary-threat-relevance/`;
 export const SVC_ENUM_PROTECTION_NEEDS_LIST = (): string => `/svc/enum/protection-needs/`;
+export const SVC_ENUM_FREQUNCY_OF_OCCURRENCE_LIST = (): string => `/svc/enum/frequency-of-occurrence/`;
+export const SVC_ENUM_POTENTIAL_DAMAGE_LIST = (): string => `/svc/enum/potential-damage/`;
+export const SVC_ENUM_POTENTIAL_RISK_LIST = (): string => `/svc/enum/potential-risk/`;
 export const SVC_ASSET_LIST = (): string => `/svc/asset/`;
 
 export const UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST = (): string => `/bsi-it-grundschutz-module`;

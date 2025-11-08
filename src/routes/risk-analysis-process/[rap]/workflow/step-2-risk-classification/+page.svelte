@@ -24,8 +24,6 @@
 <small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.view(data.rap_code)}>Vráť sa o krok vyššie.</a></small>
 <br> <br>
 
-V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na posúdenie.
-
 <table>
     <thead>
         <tr>
@@ -34,8 +32,7 @@ V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na 
             <th>dôvernosť</th>
             <th>integrita</th>
             <th>dostupnosť</th>
-            <th>identifikované základné hrozby</th>
-            <th>identifikované dodatočné hrozby</th>
+            <th>klasifikované riziká</th>
         </tr>
     </thead>
     <tbody>
@@ -46,13 +43,8 @@ V tomto kroku identifikujete relevantné hrozby pre každý cieľový objekt na 
         <td>{enum_to_name(tour.confidentiality_protection_needs, data.protection_needs_enum)}</td>
         <td>{enum_to_name(tour.integrity_protection_needs, data.protection_needs_enum)}</td>
         <td>{enum_to_name(tour.availability_protection_needs, data.protection_needs_enum)}</td>
-        <td class={tour.identified_basic_threat ? "good" : "bad"}>
-            {tour.identified_basic_threat ? "✅" : "❌"}
-            <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_1_elementary_threat(data.rap_code, tour.asset_code)}> UPRAV</a>
-        </td>
-        <td class={tour.identified_specific_threat ? "good" : "bad"}>
-            {tour.identified_specific_threat ? "✅" : "❌"}
-            <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_2_specific_threat(data.rap_code, tour.asset_code)}>UPRAV</a>
+        <td>
+            <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_2_1_risk_classification(data.rap_code, tour.asset_code)}>POZRI</a>
         </td>
         </tr>
 {/each}

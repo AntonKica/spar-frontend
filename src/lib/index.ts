@@ -1,3 +1,5 @@
+import type { RouteParams } from "$app/types"
+
 export const create_post_request = (entity: object): object => {
     return {
         method: 'POST',
@@ -36,6 +38,9 @@ class UiRiskAnalysissProcessWorkflow {
     step_1_threat_overview_list(code: string): string {
         return `/svc/risk-analysis-process/${code}/threat-overview/`;
     }
+    step_1_threat_overview_finish(code: string): string {
+        return `/svc/risk-analysis-process/${code}/step-1-threat-overview/finish`;
+    }
     
     step_1_1_elementary_threat(code: string, asset: string): string {
         return `/risk-analysis-process/${code}/workflow/step-1-1-elementary-threat/${asset}`;
@@ -68,10 +73,41 @@ class UiRiskAnalysissProcessWorkflow {
         return `/svc/risk-analysis-process/${code}/specific-threat/${asset}/overview/reviewed/${value}`;
     }
 
-    
     step_2_risk_classification(code: string): string {
         return `/risk-analysis-process/${code}/workflow/step-2-risk-classification`;
+    }
+    step_2_1_risk_classification(code: string, asset: string): string {
+        return `/risk-analysis-process/${code}/workflow/step-2-1-risk-classification/${asset}`;
+    }
+    step_2_1_risk_classification_get(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-2-1-risk-classification/[asset]">): string {
+        return `/svc/risk-analysis-process/${params.rap}/risk-classification/${params.asset}/`;
+    }
+    step_2_1_risk_classification_elementary_update(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-2-1-risk-classification/[asset]">, threat: string): string {
+        return `/svc/risk-analysis-process/${params.rap}/risk-classification/${params.asset}/elementary-threat/${threat}`;
+    }
+    step_2_1_risk_classification_specific_update(params: RouteParams<"/risk-analysis-process/[rap]/workflow/step-2-1-risk-classification/[asset]">, threat: string): string {
+        return `/svc/risk-analysis-process/${params.rap}/risk-classification/${params.asset}/specific-threat/${threat}`;
     }
 };
 
 export const UI_RISK_ANALYSIS_PROCESS_WORKFLOW = new UiRiskAnalysissProcessWorkflow();
+
+
+export const RISK_CLASSIFICATION_MATRIX = (frequency: number, damage: number) => {
+    const matrix = {
+        0: {
+            0: 0, 1: 0, 2: 1, 3: 1
+        },
+        1: {
+            0: 0, 1: 0, 2: 1, 3: 2
+        },
+        2: {
+            0: 0, 1: 1, 2: 2, 3: 3
+        },
+        3: {
+            0: 0, 1: 2, 2: 3, 3: 3
+        }
+    };
+
+    return matrix[frequency][damage];
+}
