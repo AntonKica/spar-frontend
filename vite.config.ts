@@ -5,7 +5,7 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	server: {
 		proxy: {
-			'/svc': 'http://127.0.0.1:8080'
+			'/svc': 'http://127.0.0.1:8082'
 		}
 	}
 });

@@ -1,87 +1,47 @@
 <script lang="ts">
-	import { UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+	import {  UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+	import nav_info from '$lib/stores/Navigation.svelte';
+
 	import favicon from '$lib/assets/favicon.svg';
+	import spar_logo from '$lib/assets/spar-logo.png';
 	import { UI_APPLICATION_LIST, UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST, UI_TABLES, UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST} from '$lib/routes';
 
 	let { children } = $props();
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href={spar_logo} />
 </svelte:head>
 
 <style>
-/* The side navigation menu */
-.content {
-  margin-left: 250px; } .sidenav { height: 100%; /* 100% Full-height */
-  width: 250px; /* 0 width - change this with JavaScript */
-  position: fixed;
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  background-color: lightgray;
-  padding-top: 2em; /* Place content 60px from the top */
-}
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 
-<div class="sidenav">
-<ul>
-	<li>  <a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.ui()}>Proces analýzi rizík </a>
-		<ul>
-		<li>
-			<a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.list()}>Zoznam analýz</a>		
-		</li>
-		</ul>
-	</li>
-	<li> zatiál nezaradené pre kontrolu
-		<ul>
-	<li> <a href="/">BSI IT-Grundschutz Kompendium</a> 
-		<ul>
-		<li>
-			<a href={UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST()}>Moduly</a>		
-		</li>
-		<li>
-		<a href={UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST()}>Hrozby</a>
-		</li>
-		</ul>
-	</li>
-	<li> <a href="/">Organizačné informácie</a> 
-		<ul>
-			<li>
-				<a href={UI_BUSINESS_PROCESS_LIST()}>biznisové procesy</a>
-			</li>
-			<li>
-				<a href={UI_ROLE_LIST()}>roly</a>
-			</li>
-			<li>
-				<a href={UI_APPLICATION_LIST()}>aplikácie</a>
-			</li>
-			<li>
-				<a href={UI_IT_SYSTEM_LIST()}>IT systémy</a>
-			</li>
-			<li>
-				<a href={UI_TABLES()}>tabuľky</a>
-			</li>
-			<li hidden>
-				<a href="#">miestnosti</a>
-			</li>
-		</ul>
-	</li>
-</ul>
-</ul>
-</div>
-<div class="content">
-{@render children?.()}
+<div class="container-fluid">
+	<div class="row ">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		  <div class="container-fluid">
+			<img src={spar_logo} alt="SPAR" width="30" height="30" class="d-inline-block align-text-top">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+				  <a class="nav-link"href="/">Domov</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/risk-analysis-process/create2">0. Vytvorenie procesu analýzy rizík</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/risk-analysis-process/RAP-0001/step/1-select-tour">1. Výber cieľových objektov na preskúmanie</a>
+				</li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+  	</div>
+
+	<div class="row">
+		{@render children?.()}
+	</div>
 </div>
