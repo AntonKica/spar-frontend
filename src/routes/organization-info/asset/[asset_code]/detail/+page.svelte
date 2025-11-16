@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { enum_to_name } from '$lib';
 	import { UI_ROLE_GET } from '$lib/routes';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	let asset_detail = data.asset_detail;
+	const asset_detail = data.asset_detail;
     
     const to_security_measure_class = (val: boolean) => {
         return val ? "text-bg-success" : "text-bg-light";
@@ -12,10 +13,10 @@
     const to_threat_measure_class = (val: boolean) => {
         return val ? "text-bg-danger" : "text-bg-light";
     }
-    const to_level_class = (val: string) => {
-        if(val === "normálna") {
+    const to_level_class = (val: number) => {
+        if(val === 0) {
             return "text-bg-success";
-        } else if(val === "vysoká") {
+        } else if(val === 1) {
             return "text-bg-warning";            
         } else {
             return "text-bg-danger";            
@@ -34,29 +35,29 @@
 
     const core_value_coverage_list = {
             "dôvernosť": 
-            asset_detail.fullfilled_threat_list.map((ft: any) => {
+            asset_detail.fulfilled_threat_list.map((ft: any) => {
                 return {
                     ft: ft,
                     color_list: asset_detail.security_measure_list.map((sm: any) => {
-                        return to_color_class(sm.confidentiality_treatment, ft.confidentiality_threat)
+                        return to_color_class(sm.confidentiality_protected, ft.confidentiality_impaired)
                     })
                 };
             }),
             "integrita": 
-            asset_detail.fullfilled_threat_list.map((ft: any) => {
+            asset_detail.fulfilled_threat_list.map((ft: any) => {
                 return {
                     ft: ft,
                     color_list: asset_detail.security_measure_list.map((sm: any) => {
-                        return to_color_class(sm.integrity_treatment, ft.integrity_threat)
+                        return to_color_class(sm.integrity_protected, ft.integrity_impaired)
                     })
                 };
             }),
             "dostupnosť": 
-            asset_detail.fullfilled_threat_list.map((ft: any) => {
+            asset_detail.fulfilled_threat_list.map((ft: any) => {
                 return {
                     ft: ft,
                     color_list: asset_detail.security_measure_list.map((sm: any) => {
-                        return to_color_class(sm.availability_treatment, ft.availability_threat)
+                        return to_color_class(sm.availability_protected, ft.availability_impaired)
                     })
                 };
             }),
@@ -71,7 +72,7 @@
         <div class="col-8">
             <b>Kód:</b> {asset_detail.code} <br>
             <b>Názov:</b> {asset_detail.name} <br>
-            <b>Typ:</b> {asset_detail.asset_type} <br>
+            <b>Typ:</b> {enum_to_name(asset_detail.asset_type, data.asset_type_enum)} <br>
         </div>
         <div class="col">
             <b>Potreba ochrany</b>
@@ -85,15 +86,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class={to_level_class(asset_detail.availability_protection_needs)}>
-                            {asset_detail.availability_protection_needs}
+                        <td class={to_level_class(asset_detail.confidentiality_protection_needs)}>
+                            {enum_to_name(asset_detail.confidentiality_protection_needs, data.protection_needs_enum)}
                         </td>
                         <td class={to_level_class(asset_detail.integrity_protection_needs)}>
-                            {asset_detail.integrity_protection_needs}
+                            {enum_to_name(asset_detail.integrity_protection_needs, data.protection_needs_enum)}
                         </td>
-                        <td class={to_level_class(asset_detail.confidentiality_protection_needs)}>
-                            {asset_detail.confidentiality_protection_needs}
-                            
+                        <td class={to_level_class(asset_detail.availability_protection_needs)}>
+                            {enum_to_name(asset_detail.availability_protection_needs, data.protection_needs_enum)}
                         </td>
                     </tr>
                 </tbody>
@@ -108,6 +108,9 @@
 </div>
 <div class="container-fluid pb-5">
     <div class="h2 pb-2 mb-4 text-dark border-bottom border-dark">Zavedené bezpečnostné opatrenia </div>
+    {#if asset_detail.security_measure_list.length === 0}
+        <div class="fw-bold fst-italic text-bg-warning">bez zavedených bezpečnostných opatrení</div>
+    {/if}
     {#each asset_detail.security_measure_list as security_measure}
         <div class="row justify-content-between border-start border-dark text-bg-light ms-3 me-3 p-2">
             <div class="row">
@@ -128,9 +131,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class={to_security_measure_class(security_measure.confidentiality_treatment)}></td>
-                            <td class={to_security_measure_class(security_measure.integrity_treatment)}></td>
-                            <td class={to_security_measure_class(security_measure.availability_treatment)}></td>
+                            <td class={to_security_measure_class(security_measure.confidentiality_protected)}></td>
+                            <td class={to_security_measure_class(security_measure.integrity_protected)}></td>
+                            <td class={to_security_measure_class(security_measure.availability_protected)}></td>
                         </tr>
                     </tbody>
                 </table>
@@ -147,14 +150,17 @@
 
 <div class="container-fluid pb-5">
     <div class="h2 pb-2 mb-4 text-dark border-bottom border-dark">Naplnené bezpečnostné hrozby</div>
-    {#each asset_detail.fullfilled_threat_list as fullfilled_threat}
+    {#if asset_detail.fulfilled_threat_list.length === 0}
+        <div class="fw-bold fst-italic text-bg-success">bez naplnených bezpečnostných hrozieb</div>
+    {/if}
+    {#each asset_detail.fulfilled_threat_list as fulfilled_threat}
         <div class="row justify-content-between border-start border-dark text-bg-light ms-3 me-3 p-2">
             <div class="row">
                 <div class="col-10">
-                    <b>Kód:</b> {fullfilled_threat.code} <br>
-                    <b>Názov:</b> {fullfilled_threat.name} <br>
-                    <b>Časová cena:</b> {fullfilled_threat.time_cost || "N/A" } {fullfilled_threat.time_cost_unit}<br>
-                    <b>Finančná cena:</b> {fullfilled_threat.monetary_cost || "N/A"} € <br>
+                    <b>Kód:</b> {fulfilled_threat.code} <br>
+                    <b>Názov:</b> {fulfilled_threat.threat_name} <br>
+                    <b>Časová cena:</b> {fulfilled_threat.time_cost || "N/A" } {fulfilled_threat.time_cost_unit}<br>
+                    <b>Finančná cena:</b> {fulfilled_threat.monetary_cost || "N/A"} € <br>
                     <br>
                 </div>
                 <div class="col">
@@ -169,9 +175,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class={to_threat_measure_class(fullfilled_threat.confidentiality_threat)}></td>
-                            <td class={to_threat_measure_class(fullfilled_threat.integrity_threat)}></td>
-                            <td class={to_threat_measure_class(fullfilled_threat.availability_threat)}></td>
+                            <td class={to_threat_measure_class(fulfilled_threat.confidentiality_impaired)}></td>
+                            <td class={to_threat_measure_class(fulfilled_threat.integrity_impaired)}></td>
+                            <td class={to_threat_measure_class(fulfilled_threat.availability_impaired)}></td>
                         </tr>
                     </tbody>
                 </table>
@@ -179,14 +185,14 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <b>Popis</b><br> <em>{fullfilled_threat.description || "popis je prázdny"}</em>
+                    <b>Popis</b><br> <em>{fulfilled_threat.description || "popis je prázdny"}</em>
                 </div>
             </div>
         </div><br>
     {/each}
 </div>
 
-<div class="container-fluid pb-5">
+<div class="container-fluid pb-5" hidden={asset_detail.security_measure_list.length == 0 || asset_detail.fulfilled_threat_list.length == 0}>
     <div class="h2 pb-2 mb-4 text-info border-bottom border-info">Prehľady</div>
     <div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">pokrytie základných hodnôt</div>
     
@@ -222,8 +228,9 @@
     </div>
 
     {#each Object.entries(core_value_coverage_list) as [core_value, core_coverage]}
-    <div class="h4 pb-2 mb-4 text-dark">{core_value}</div>
-    <table class="table">
+    
+    <table class="table caption-top">
+        <caption class="h4 text-dark">{core_value}</caption>
         <thead>
             <tr>
                 <th></th>
@@ -236,13 +243,13 @@
             </tr>
         </thead>
         <tbody>
-        {#each core_coverage as fullfilled_threat}
+        {#each core_coverage as fulfilled_threat}
             <tr>
                 <td>
-                    <div class="fw-bold">{fullfilled_threat.ft.code}</div>
-                    <div class="fw-normal fst-italic"><small>{fullfilled_threat.ft.name}</small></div>
+                    <div class="fw-bold">{fulfilled_threat.ft.code}</div>
+                    <div class="fw-normal fst-italic"><small>{fulfilled_threat.ft.threat_name}</small></div>
                 </td>
-                {#each fullfilled_threat.color_list as color}
+                {#each fulfilled_threat.color_list as color}
                 <td class={color}></td>
                 {/each}
             </tr>

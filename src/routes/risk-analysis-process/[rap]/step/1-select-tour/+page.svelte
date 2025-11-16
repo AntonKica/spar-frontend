@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
     import { goto } from '$app/navigation';
-	import { create_post_request, UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+	import { create_post_request, enum_to_name, UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
 
 	let { data }: PageProps = $props();
 
@@ -52,7 +52,7 @@ Zační nový proces analýzy rizík: <button type="button" on:click={post}>X</b
         <tr>
         <td>{asset.code} <a href="/organization-info/asset/{asset.code}/detail">👁</a></td>
         <td>{asset.name}</td>
-        <td>{asset.asset_type}</td>
+        <td>{enum_to_name(asset.asset_type, data.asset_type_enum)}</td>
         <td><input class="form-check-input" type="checkbox" bind:checked={asset.add}></td>
         </tr>
 {/each}
