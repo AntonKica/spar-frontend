@@ -31,7 +31,10 @@
 				  <a class="nav-link" href="/risk-analysis-process/create2">0. Vytvorenie procesu analýzy rizík</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="/risk-analysis-process/RAP-0001/step/1-select-tour">1. Výber cieľových objektov na preskúmanie</a>
+				  <a class="nav-link" href="/risk-analysis-process/RAP-000001/step/1-select-tour">1. Výber cieľových objektov na preskúmanie</a>
+				</li>
+				<li class="nav-item">
+					  <a class="nav-link" href="/risk-analysis-process/RAP-000001/step/1-select-tour">1. Výber cieľových objektov na preskúmanie kontrola</a>
 				</li>
 			  </ul>
 			</div>
@@ -39,7 +42,5 @@
 		</nav>
   	</div>
 
-	<div class="row">
-		{@render children?.()}
-	</div>
+	{@render children?.()}
 </div>

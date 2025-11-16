@@ -7,6 +7,11 @@ export const create_post_request = (entity: object): object => {
         body: JSON.stringify(entity)
     }
 }
+export const create_post_request_empty = (): object => {
+    return {
+        method: 'POST',
+    }
+}
 
 export const create_delete_request = (): object => {
     return {
