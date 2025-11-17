@@ -28,6 +28,9 @@
 				  <a class="nav-link"href="/">Domov</a>
 				</li>
 				<li class="nav-item">
+				  <a class="nav-link" href="/risk-analysis-process">Analýza rizík</a>
+				</li>
+				<li class="nav-item">
 				  <a class="nav-link" href="/risk-analysis-process/create2">0. Vytvorenie procesu analýzy rizík</a>
 				</li>
 				<li class="nav-item">

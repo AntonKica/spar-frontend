@@ -8,7 +8,6 @@
     let asset_list = data.asset_list;
 
     async function post() {
-        console.log("wtf")
         const objects_under_review = asset_list.filter((asset: object) => asset.under_review).map(asset => asset.code)
         if (objects_under_review.length == 0) {
             alert("Zoznam aktív na kontrolu je prázdny. Pridajte aspoň jedno aktívum, aby ste mohli začať proces analýzy rizík.");

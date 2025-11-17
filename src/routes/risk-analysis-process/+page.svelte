@@ -18,8 +18,8 @@
 <small><a href="/">Vráť sa o krok vyššie.</a> </small>
 <br> <br>
 <div class="box">
-<a href={UI_RISK_ANALYSIS_CREATE()}>Začni novú analýzu rizík</a>
+<a href=/risk-analysis-process/create2>Začni novú analýzu rizík</a>
 </div>
 <div class="box">
-<a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.list()}>Zoznam analýz rizík</a>
+<a href="/risk-analysis-process/list">Zoznam analýz rizík</a>
 </div>

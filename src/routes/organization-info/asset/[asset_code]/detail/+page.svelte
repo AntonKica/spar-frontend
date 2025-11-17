@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enum_to_name } from '$lib';
+	import ProtectionNeedCell from '$lib/ProtectionNeedCell.svelte';
 	import { UI_ROLE_GET } from '$lib/routes';
 	import type { PageProps } from './$types';
 
@@ -12,15 +13,6 @@
     }
     const to_threat_measure_class = (val: boolean) => {
         return val ? "text-bg-danger" : "text-bg-light";
-    }
-    const to_level_class = (val: number) => {
-        if(val === 0) {
-            return "text-bg-success";
-        } else if(val === 1) {
-            return "text-bg-warning";            
-        } else {
-            return "text-bg-danger";            
-        }
     }
 
     const to_color_class = (sm: boolean, ft: boolean) => {
@@ -35,7 +27,7 @@
 
     const core_value_coverage_list = {
             "dôvernosť": 
-            asset_detail.fulfilled_threat_list.map((ft: any) => {
+            asset_detail?.fulfilled_threat_list?.map((ft: any) => {
                 return {
                     ft: ft,
                     color_list: asset_detail.security_measure_list.map((sm: any) => {
@@ -44,7 +36,7 @@
                 };
             }),
             "integrita": 
-            asset_detail.fulfilled_threat_list.map((ft: any) => {
+            asset_detail?.fulfilled_threat_list?.map((ft: any) => {
                 return {
                     ft: ft,
                     color_list: asset_detail.security_measure_list.map((sm: any) => {
@@ -53,7 +45,7 @@
                 };
             }),
             "dostupnosť": 
-            asset_detail.fulfilled_threat_list.map((ft: any) => {
+            asset_detail?.fulfilled_threat_list?.map((ft: any) => {
                 return {
                     ft: ft,
                     color_list: asset_detail.security_measure_list.map((sm: any) => {
@@ -86,15 +78,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class={to_level_class(asset_detail.confidentiality_protection_needs)}>
-                            {enum_to_name(asset_detail.confidentiality_protection_needs, data.protection_needs_enum)}
-                        </td>
-                        <td class={to_level_class(asset_detail.integrity_protection_needs)}>
-                            {enum_to_name(asset_detail.integrity_protection_needs, data.protection_needs_enum)}
-                        </td>
-                        <td class={to_level_class(asset_detail.availability_protection_needs)}>
-                            {enum_to_name(asset_detail.availability_protection_needs, data.protection_needs_enum)}
-                        </td>
+                        <ProtectionNeedCell protection_needs={asset_detail.confidentiality_protection_needs} protection_needs_enum={data.protection_needs_enum}/>
+                        <ProtectionNeedCell protection_needs={asset_detail.integrity_protection_needs} protection_needs_enum={data.protection_needs_enum}/>
+                        <ProtectionNeedCell protection_needs={asset_detail.availability_protection_needs} protection_needs_enum={data.protection_needs_enum}/>
                     </tr>
                 </tbody>
             </table>
