@@ -27,7 +27,7 @@
         <td>{rap.created_on}</td>
         <td>{enum_to_name(rap.process_step, data.process_step_enum)}</td>
         <td>{enum_to_name(rap.process_status, data.process_status_enum)}</td>
-        <td><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.view(rap.code)}>pozri</a></td>
+        <td><a href={`/risk-analysis-process/${rap.code}/step`}>pozri</a></td>
     </tr>
     {/each}
     </tbody>
