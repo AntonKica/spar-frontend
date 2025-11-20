@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
-    import { goto } from '$app/navigation';
-	import { create_post_request, enum_to_name, UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
+    import { page } from '$app/state'
+	import { create_post_request, enum_to_name } from '$lib';
 
+    import { invalidateAll } from '$app/navigation';
 	let { data }: PageProps = $props();
 
     let asset_list = data.asset_list;
@@ -13,7 +14,7 @@
             alert("Zoznam aktív na kontrolu je prázdny. Pridajte aspoň jedno aktívum, aby ste mohli začať proces analýzy rizík.");
             return;
         }
-        const res = await fetch(`/svc/risk-analysis-process/${data.params.rap_code}/tour`, create_post_request(objects_under_review))
+        const res = await fetch(`/svc/risk-analysis-process/${page.params.rap_code}/tour`, create_post_request(objects_under_review))
 		
 		const json = await res.json()
         if (json.status != "ok") {
@@ -21,12 +22,13 @@
             return;
         }
         
-        alert("Proces analýzy rizík bol úspešne akualizovaný")
+        alert("Proces analýzy rizík bol úspešne akualizovaný");
+        invalidateAll();
     }
 </script>
 
 <h1> Vytváranie procesu analýzy rizík</h1>
-<small><a href={`/risk-analysis-process/${data.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
+<small><a href={`/risk-analysis-process/${page.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
 <br> <br>
 
 

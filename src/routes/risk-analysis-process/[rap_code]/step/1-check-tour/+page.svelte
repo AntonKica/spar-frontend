@@ -3,6 +3,7 @@
     import ProtectionNeedCell from '$lib/ProtectionNeedCell.svelte';
 
     import { goto } from '$app/navigation';
+    import { page } from '$app/state';
 	import { create_post_request_empty, enum_to_name } from '$lib';
 
 	let { data }: PageProps = $props();
@@ -11,7 +12,7 @@
         if(!confirm("Naozaj si prajete pokračovať?")) {
             return;
         }
-        const res = await fetch(`/svc/risk-analysis-process/${data.params.rap_code}/step/${data.rap.process_step}/complete`, create_post_request_empty())
+        const res = await fetch(`/svc/risk-analysis-process/${page.params.rap_code}/step/${data.rap.process_step}/complete`, create_post_request_empty())
         if(res.status != 200) {
             alert("Nastala chyba: " + res.status)
         }
@@ -23,12 +24,12 @@
         }
         
         alert("Pokračujte v ďalšiom kroku")
-        goto("/risk-analysis-process/step/2-idk")
+        goto(`/risk-analysis-process/${page.params.rap_code}/step`)
     }
 </script>
 
 <h1>Kontrola vybraných aktív na kontrolu</h1>
-<small><a href={`/risk-analysis-process/${data.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
+<small><a href={`/risk-analysis-process/${page.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
 <br> <br>
 
 
