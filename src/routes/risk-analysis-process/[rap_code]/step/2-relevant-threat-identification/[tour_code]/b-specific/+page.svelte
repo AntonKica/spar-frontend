@@ -6,16 +6,20 @@
 	let { data = $bindable() }: PageProps = $props();
 
     let name = $state("")
-    let descriptiun = $state("")
+    let description = $state("")
     let confidentiality_impaired = $state(false)
     let integrity_impaired = $state(false)
     let availability_impaired = $state(false)
 
     async function create_specific_threat() {
-        const res = await fetch(
-            UI_RISK_ANALYSIS_PROCESS_WORKFLOW.step_1_2_specific_create(data.rap, data.asset), 
-            create_post_request(specific_threat_create_data)
-        );
+        const data = {
+                name: name,
+                description: description,
+                confidentiality_impaired: confidentiality_impaired,
+                integrity_impaired: integrity_impaired,
+                availability_impaired: availability_impaired,
+            };
+        const res = await fetch('/svc/specific-threat', create_post_request(data));
 
         if(res.status != 200) {
             alert("Chyba pri vytvarani: " + res.statusText)
@@ -37,13 +41,31 @@
 <small><a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification`}>Vráť sa o krok vyššie.</a> </small>
 
 <div class="h4 pb-2 mb-4 text-dark border-bottom border-dark">Definuj novú špefickú hrozbu</div>
-<label>Názov <input type="text" bind:value={name}></label><br><br>
-<label>Popis<br><textarea bind:value={descriptiun} cols="100" rows="6"></textarea></label> <br>
-<label>C <input type="checkbox" bind:checked={confidentiality_impaired}></label>
-<label>I <input type="checkbox" bind:checked={confidentiality_impaired}></label>
-<label>A <input type="checkbox" bind:checked={confidentiality_impaired}></label><br>
+<div class="row">
+    <div class="col">
+        <label>Názov <input type="text" bind:value={name}></label><br><br>
+        <label for="description">Popis </label> 
+        <textarea class="form-control" id="description" bind:value={description} rows="6"></textarea>
+        <br>
+    </div>
+    <div class="col">
+        <table class="table caption-top">
+            <caption>ohrozuje</caption>
+            <thead>
+                <tr><th>C</th><th>I</th><th>A</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" bind:checked={confidentiality_impaired}></td>
+                    <td><input type="checkbox" bind:checked={integrity_impaired}></td>
+                    <td><input type="checkbox" bind:checked={availability_impaired}></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<input class="btn btn-success" onclick={create_specific_threat} value="Pridaj novú špecifickú hrozbu">
+<input class="btn btn-success" onclick={create_specific_threat} value="Pridaj novú špecifickú hrozbu"/>
 <hr>
 <div class="h4 pb-2 mb-4 text-dark border-bottom border-dark">Špefické hrozby</div>
 <table class="table table-striped">

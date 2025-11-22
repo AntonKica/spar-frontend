@@ -93,7 +93,7 @@
 </table>
 
 <div class="alert alert-info" role="alert">
-  <h4 class="alert-heading">Ukončenie výberu aktív na kontrolu</h4>
-  <p>V prípade, že ste spokojní s vybratou množino aktív na kontrolu, prejdite do ďalšieho krkoku.</p>
+  <h4 class="alert-heading">Ukončenie identifikácie relevantných aktív</h4>
+  <p>V prípade, že ste spokojní s vybratou množinou potenciálnych hrozieb, prejdite do ďalšieho kroku.</p>
   <button class="btn btn-success" onclick={() => post()}>Potvrdiť a prejsť do ďalšieho kroku</button>
 </div>
