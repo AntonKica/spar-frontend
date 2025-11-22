@@ -1,8 +1,8 @@
 import type { LayoutLoad } from './$types';
 
-export const load: LayoutLoad = async ({ params, fetch }) => {
-    const tour = await fetch(`/svc/asset/${params.tour_code}`).then(response => response.json());
+export const load: LayoutLoad = async ({ parent, params }) => {
+	const { tour_threat_identification } = await parent();
 	return {
-		tour: tour.data
+		tour: tour_threat_identification.find((f: any) => f.tour_code === params.tour_code)
 	};
 };

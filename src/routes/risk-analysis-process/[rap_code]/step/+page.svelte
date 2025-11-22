@@ -38,6 +38,9 @@
 		<li>
 			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification`}>identifikácia relevantných hrozieb</a>
 		</li>
+		<li>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-check-relevant-threat-identification`}>kontrola identifikovaných relevantných hrozieb</a>
+		</li>
 	</ul>
 </li>
 </ol>
