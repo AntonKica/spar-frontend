@@ -10,7 +10,7 @@
 <small><a href={UI_RISK_ANALYSIS_PROCESS_WORKFLOW.ui()}>Vráť sa o krok vyššie.</a> </small>
 <br> <br>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <td>kód</td>

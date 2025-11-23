@@ -232,7 +232,7 @@
         {#each core_coverage as fulfilled_threat}
             <tr>
                 <td>
-                    <div class="fw-bold">{fulfilled_threat.ft.code}</div>
+                    <div class="fw-bold">{fulfilled_threat.ft.threat_code}</div>
                     <div class="fw-normal fst-italic"><small>{fulfilled_threat.ft.threat_name}</small></div>
                 </td>
                 {#each fulfilled_threat.color_list as color}

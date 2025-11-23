@@ -1,8 +1,5 @@
 <script lang="ts">
-	import {  UI_RISK_ANALYSIS_PROCESS_WORKFLOW } from '$lib';
-	import favicon from '$lib/assets/favicon.svg';
 	import spar_logo from '$lib/assets/spar-logo.png';
-	import { UI_APPLICATION_LIST, UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_LIST, UI_BUSINESS_PROCESS_LIST, UI_ROLE_LIST, UI_IT_SYSTEM_LIST, UI_TABLES, UI_ENUM_BSI_IT_GRUNDSHUTZ_ELEMENTARY_THREAT_LIST} from '$lib/routes';
 
 	let { children } = $props();
 </script>
@@ -29,15 +26,6 @@
 				</li>
 				<li class="nav-item">
 				  <a class="nav-link" href="/risk-analysis-process">Analýza rizík</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/risk-analysis-process/create2">0. Vytvorenie procesu analýzy rizík</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/risk-analysis-process/RAP-000001/step/1-select-tour">1. Výber cieľových objektov na preskúmanie</a>
-				</li>
-				<li class="nav-item">
-					  <a class="nav-link" href="/risk-analysis-process/RAP-000001/step/1-select-tour">1. Výber cieľových objektov na preskúmanie kontrola</a>
 				</li>
 			  </ul>
 			</div>

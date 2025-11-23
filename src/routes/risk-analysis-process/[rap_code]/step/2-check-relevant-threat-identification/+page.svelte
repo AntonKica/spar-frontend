@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { PageProps } from '../1-check-tour copy/$types';
-    import ProtectionNeedCell from '$lib/ProtectionNeedCell.svelte';
 
-    import { goto } from '$app/navigation';
+    import { goto, invalidate, invalidateAll } from '$app/navigation';
     import { page } from '$app/state';
 	import { create_post_request_empty, enum_to_name } from '$lib';
 
@@ -25,13 +24,14 @@
         }
         
         alert("Pokračujte v ďalšiom kroku")
+        invalidateAll()
         goto(`/risk-analysis-process/${page.params.rap_code}/step`)
     }
     
-    function relevance_to_class(relevance: number) {
-        if(relevance == 0) {
+    function relevance_to_class(tour: any | undefined) {
+        if(tour === undefined) {
             return "";
-        } else if (relevance == 1) {
+        } else if (tour.relevance == 1) {
             return "text-bg-warning";
         } else {
             return "text-bg-danger";
@@ -48,7 +48,7 @@
     }
 </style>
 
-<h1>Kontrola vybraných potenciálnych hrozieb</h1>
+<h1>Kontrola identifikovaných potenciálnych hrozieb</h1>
 <small><a href={`/risk-analysis-process/${page.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
 <br> <br>
 
@@ -58,7 +58,7 @@
     <thead>
         <tr>
             <th></th>
-        {#each data.tour_threat_identification as tour}
+        {#each data.tour_threat_list as tour}
             <th>
                 <div class="fw-bold">{tour.tour_code}</div>
                 <div class="fw-normal fst-italic"><small>{tour.tour_name}</small></div>
@@ -67,25 +67,14 @@
         </tr>
     </thead>
     <tbody>
-    {#each data.tour_et_summary_list as et}
+    {#each data.threat_list as threat}
         <tr>
             <td>
-                <div class="fw-bold">{et.et_code}</div>
-                <div class="fw-normal fst-italic"><small>{enum_to_name(et.et_code, data.elementary_threat_enum)}</small></div>
+                <div class="fw-bold">{threat.code}</div>
+                <div class="fw-normal fst-italic"><small>{threat.name}</small></div>
             </td>
-            {#each et.tour_list as relevance}
-            <td class={relevance_to_class(relevance)}></td>
-            {/each}
-        </tr>
-    {/each}
-    {#each data.tour_st_summary_list as st}
-        <tr>
-            <td>
-                <div class="fw-bold">{st.st_code}</div>
-                <div class="fw-normal fst-italic"><small>{st.st_name}</small></div>
-            </td>
-            {#each st.tour_list as relevant}
-            <td class={relevant ? "text-bg-danger" : ""}></td>
+            {#each threat.tour_list as tour}
+            <td class={relevance_to_class(tour)}></td>
             {/each}
         </tr>
     {/each}
@@ -93,7 +82,7 @@
 </table>
 
 <div class="alert alert-info" role="alert">
-  <h4 class="alert-heading">Ukončenie identifikácie relevantných aktív</h4>
+  <h4 class="alert-heading">Ukončenie identifikácie potenciálnych hrozieb</h4>
   <p>V prípade, že ste spokojní s vybratou množinou potenciálnych hrozieb, prejdite do ďalšieho kroku.</p>
   <button class="btn btn-success" onclick={() => post()}>Potvrdiť a prejsť do ďalšieho kroku</button>
 </div>

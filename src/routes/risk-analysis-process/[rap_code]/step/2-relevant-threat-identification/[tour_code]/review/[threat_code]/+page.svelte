@@ -6,20 +6,20 @@
 
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
-    let relevant =  $state(data.specific_threat.relevant);
-    let explanation = $state(data.specific_threat.explanation);
+    let relevance =  $state(data.threat.relevance);
+    let explanation =  $state(data.threat.explanation);
 
     async function post() {
         if(!confirm("Naozaj si prajete uložiť posudok?")) {
             return;
         }
         const data = {
-            relevant: relevant,
+            relevance: relevance,
             explanation: explanation
         };
         console.log(data)
         const res = await fetch(
-            `/svc/step-2-relevant-threat-identification/${page.params.rap_code}/${page.params.tour_code}/specific/${page.params.st_code}/review`,
+            `/svc/step-2-relevant-threat-identification/${page.params.rap_code}/${page.params.tour_code}/review/${page.params.threat_code}`,
              create_post_request(data))
         if(res.status != 200) {
             alert("Nastala chyba: " + res.status)
@@ -35,35 +35,36 @@
         invalidateAll();
     }
 </script>
-<h1>Posúdenie špecifickej hrozby {data.specific_threat.code} </h1>
+<h1>Posúdenie hrozby {data.threat.code} </h1>
 
-<small><a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification/${page.params.tour_code}/b-specific`}>Vráť sa o krok vyššie.</a> </small>
+<small><a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification/${page.params.tour_code}`}>Vráť sa o krok vyššie.</a> </small>
 
 <div class="row justify-content-between">
     <div class="col-6">
-        <b>Kód:</b> {data.specific_threat.code} <br>
-        <b>Názov:</b> {data.specific_threat.name} <br>
+        <b>Kód:</b> {data.threat.code} <br>
+        <b>Názov:</b> {data.threat.name}
     </div>  
     <div class="col-4">
-        <ElementaryThreatImpactTable elemntary_threat={data.specific_threat}/>
+        <ElementaryThreatImpactTable elemntary_threat={data.threat}/>
     </div>
 </div>
 
 
 
 <div>
-<label for="relevant" class="form-label">Relevantná</label>
-<select class="form-select" id="relevant" bind:value={relevant}>
-  <option value={true}>áno</option>
-  <option value={false}>nie</option>
+<label for="relevance" class="form-label">Relevantnosť</label>
+<select class="form-select" id="relevance" bind:value={relevance}>
+{#each data.threat_relevance_enum as threat_relevance }
+  <option value={threat_relevance.code}>{threat_relevance.name}</option>
+{/each}
 </select>
 </div>
 <br>
 
-{#if relevant == 0}
+{#if relevance == 0}
 <div class="alert alert-info d-flex align-items-center" role="alert">
   <p>
-    (i) Táto hrozba nie je <b>relevantná</b>, preto nebude súčasťou ďalších krokov.
+    (i) Táto hrozba bola označená ako <b>irelevantná</b>, preto nebude súčasťou ďalších krokov.
 </p>
 </div>
 {:else}
@@ -72,7 +73,13 @@
 <textarea class="form-control" id="explanation" rows="3" bind:value={explanation}></textarea>
 
 <div class="alert alert-info d-flex align-items-center" role="alert">
-<p> (i) Táto hrozba bola označená ako <b>relevantná</b>, preto bude ďalej posudzovaná. </p>
+<p> (i)
+{#if relevance == 1}
+    Táto hrozba bola označená ako <b>nepriama</b>, preto bude posudzovaná kolektívne s ďalšími nepriamimi hrozbami.
+{:else}
+    Táto hrozba bola označená ako <b>priama</b>, preto bude posudzovaná samostatne.
+{/if}
+</p>
 </div>
 {/if}
 

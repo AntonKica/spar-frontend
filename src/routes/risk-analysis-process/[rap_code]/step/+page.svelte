@@ -3,9 +3,9 @@
 	import { page } from '$app/state';
 	let { data }: PageProps = $props();
 
-	const to_highlight = (process_status: number) => {
-		if(process_status === 0) {
-			return "text-bg-success";
+	const to_highlight = (process_status: number, highlight_status: number) => {
+		if(process_status === highlight_status) {
+			return "text-success";
 		} else if (process_status === 2) {
 			return "text-secondary";
 		} else {
@@ -21,7 +21,7 @@
 <h2>Status</h2>
 
 <ol>
-<li class={to_highlight(data.rap.step_1_select_tour_process_status)}>
+<li class={to_highlight(data.rap.process_step, 0)}>
 		identifikácia cieľových objektov na preskúmanie
 		<ul>
 		<li>
@@ -32,7 +32,7 @@
 		</li>
 	</ul>
 </li>
-<li class={to_highlight(data.rap.step_2_threat_identification_process_status)}>
+<li class={to_highlight(data.rap.process_step, 1)}>
 	identifikácia relevantných hrozieb
 	<ul>
 		<li>
@@ -40,6 +40,17 @@
 		</li>
 		<li>
 			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-check-relevant-threat-identification`}>kontrola identifikovaných relevantných hrozieb</a>
+		</li>
+	</ul>
+</li>
+<li class={to_highlight(data.rap.process_step, 2)}>
+	klasifikácia potenciálnych rizík
+	<ul>
+		<li>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification`}>klasifikácia rizík</a>
+		</li>
+		<li>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-check-relevant-threat-identification`}>kontrola klasifikácie rizík</a>
 		</li>
 	</ul>
 </li>
