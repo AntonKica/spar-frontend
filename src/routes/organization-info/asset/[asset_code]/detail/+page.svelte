@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { enum_to_name } from '$lib';
-	import ProtectionNeedCell from '$lib/ProtectionNeedCell.svelte';
-	import { UI_ROLE_GET } from '$lib/routes';
+	import AssetProtectionNeedsTable from '$lib/AssetProtectionNeedsTable.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -67,23 +66,10 @@
             <b>Typ:</b> {enum_to_name(asset_detail.asset_type, data.asset_type_enum)} <br>
         </div>
         <div class="col">
-            <b>Potreba ochrany</b>
-            <table class="table caption-top">
-                <thead>
-                    <tr>
-                        <th>C</th>
-                        <th>I</th>
-                        <th>A</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <ProtectionNeedCell protection_needs={asset_detail.confidentiality_protection_needs} protection_needs_enum={data.protection_needs_enum}/>
-                        <ProtectionNeedCell protection_needs={asset_detail.integrity_protection_needs} protection_needs_enum={data.protection_needs_enum}/>
-                        <ProtectionNeedCell protection_needs={asset_detail.availability_protection_needs} protection_needs_enum={data.protection_needs_enum}/>
-                    </tr>
-                </tbody>
-            </table>
+            <AssetProtectionNeedsTable
+                asset={asset_detail}
+                protection_needs_enum={data.protection_needs_enum}
+            ></AssetProtectionNeedsTable>
         </div>
     </div>
     <div class="row">

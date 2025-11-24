@@ -39,7 +39,7 @@
 			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification`}>identifikácia relevantných hrozieb</a>
 		</li>
 		<li>
-			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-check-relevant-threat-identification`}>kontrola identifikovaných relevantných hrozieb</a>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification-check`}>kontrola identifikovaných relevantných hrozieb</a>
 		</li>
 	</ul>
 </li>
@@ -47,10 +47,10 @@
 	klasifikácia potenciálnych rizík
 	<ul>
 		<li>
-			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification`}>klasifikácia rizík</a>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/3-risk-classification`}>klasifikácia rizík</a>
 		</li>
 		<li>
-			<a href={`/risk-analysis-process/${page.params.rap_code}/step/2-check-relevant-threat-identification`}>kontrola klasifikácie rizík</a>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/3-risk-classification-check`}>kontrola klasifikácie rizík</a>
 		</li>
 	</ul>
 </li>

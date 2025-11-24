@@ -1,4 +1,5 @@
 import type { RouteParams } from "$app/types"
+import { goto } from '$app/navigation';
 
 export const create_post_request = (entity: object): object => {
     return {
@@ -116,7 +117,7 @@ class UiRiskAnalysissProcessWorkflow {
 export const UI_RISK_ANALYSIS_PROCESS_WORKFLOW = new UiRiskAnalysissProcessWorkflow();
 
 
-export const RISK_CLASSIFICATION_MATRIX = (frequency: number, damage: number) => {
+export const RISK_CLASSIFICATION_MATRIX = (threat:any) => {
     const matrix = {
         0: {
             0: 0, 1: 0, 2: 1, 3: 1
@@ -132,5 +133,24 @@ export const RISK_CLASSIFICATION_MATRIX = (frequency: number, damage: number) =>
         }
     };
 
-    return matrix[frequency][damage];
+    return matrix[threat.probability][threat.impact];
+}
+
+export async function step_complete(rap_code: string, step: string) {
+        if(!confirm("Naozaj si prajete pokračovať?")) {
+            return;
+        }
+        const res = await fetch(`/svc/risk-analysis-process/${rap_code}/step/${step}/complete`, create_post_request_empty())
+        if(res.status != 200) {
+            alert("Nastala chyba: " + res.status)
+        }
+
+		const json = await res.json()
+        if (json.status != "ok") {
+            alert("Nastala chyba" + json.message)
+            return;
+        }
+        
+        alert("Pokračujte v ďalšiom kroku")
+        goto(`/risk-analysis-process/${rap_code}/step`, { invalidateAll: true})
 }

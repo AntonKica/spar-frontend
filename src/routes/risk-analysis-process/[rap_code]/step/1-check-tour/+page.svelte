@@ -2,30 +2,11 @@
 	import type { PageProps } from './$types';
     import ProtectionNeedCell from '$lib/ProtectionNeedCell.svelte';
 
-    import { goto } from '$app/navigation';
     import { page } from '$app/state';
-	import { create_post_request_empty, enum_to_name } from '$lib';
+	import { enum_to_name, step_complete } from '$lib';
 
 	let { data }: PageProps = $props();
 
-    async function post() {
-        if(!confirm("Naozaj si prajete pokračovať?")) {
-            return;
-        }
-        const res = await fetch(`/svc/risk-analysis-process/${page.params.rap_code}/step/${data.rap.process_step}/complete`, create_post_request_empty())
-        if(res.status != 200) {
-            alert("Nastala chyba: " + res.status)
-        }
-
-		const json = await res.json()
-        if (json.status != "ok") {
-            alert("Nastala chyba" + json.message)
-            return;
-        }
-        
-        alert("Pokračujte v ďalšiom kroku")
-        goto(`/risk-analysis-process/${page.params.rap_code}/step`)
-    }
 </script>
 
 <h1>Kontrola vybraných aktív na kontrolu</h1>
@@ -62,5 +43,5 @@
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">Ukončenie výberu aktív na kontrolu</h4>
   <p>V prípade, že ste spokojní s vybratou množino aktív na kontrolu, prejdite do ďalšieho krkoku.</p>
-  <button class="btn btn-success" onclick={() => post()}>Potvrdiť a prejsť do ďalšieho kroku</button>
+  <button class="btn btn-success" onclick={() => step_complete(page.params.rap_code, data.rap.process_step)}>Potvrdiť a prejsť do ďalšieho kroku</button>
 </div>

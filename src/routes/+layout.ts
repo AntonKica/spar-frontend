@@ -3,17 +3,16 @@ export const ssr = false;
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ params, fetch }) => {
-    const asset_type_enum = await fetch("/svc/enum/asset-type/").then(response => response.json());
-    const protection_needs_enum = await fetch("/svc/enum/protection-needs/").then(response => response.json());
-    const process_status_enum = await fetch("/svc/enum/process-status/").then(response => response.json())
-    const process_step_enum = await fetch("/svc/enum/process-step/").then(response => response.json())
-    const threat_relevance_enum = await fetch('/svc/enum/threat-relevance/').then(response => response.json());
+    const enum_list = await fetch("/svc/enum/").then(response => response.json());
 
 	return {
-        process_status_enum: process_status_enum.data,
-        process_step_enum: process_step_enum.data,
-        asset_type_enum: asset_type_enum.data,
-        protection_needs_enum: protection_needs_enum.data,
-        threat_relevance_enum: threat_relevance_enum.data,
+        process_status_enum: enum_list.data.process_status,
+        process_step_enum: enum_list.data.process_step,
+        asset_type_enum: enum_list.data.asset_type,
+        protection_needs_enum: enum_list.data.protection_needs,
+        threat_relevance_enum: enum_list.data.threat_relevance,
+        threat_probability_enum: enum_list.data.threat_probability,
+        threat_impact_enum: enum_list.data.threat_impact,
+        threat_risk_enum: enum_list.data.threat_risk
 	};
 };

@@ -45,7 +45,7 @@
         <b>Názov:</b> {data.threat.name}
     </div>  
     <div class="col-4">
-        <ElementaryThreatImpactTable elemntary_threat={data.threat}/>
+        <ElementaryThreatImpactTable threat={data.threat}/>
     </div>
 </div>
 

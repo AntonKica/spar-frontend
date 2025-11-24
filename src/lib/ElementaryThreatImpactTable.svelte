@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let elemntary_threat: any;
+    export let threat: any;
     const to_threat_measure_class = (val: boolean) => {
         return val ? "text-bg-danger" : "";
     }
@@ -9,16 +9,16 @@
     <caption>ohrozuje</caption>
     <thead>
         <tr>
-            <th>C</th>
-            <th>I</th>
-            <th>A</th>
+            <th class="text-center" style="width: 33%;">C</th>
+            <th class="text-center" style="width: 33%;">I</th>
+            <th class="text-center" style="width: 33%;">A</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class={to_threat_measure_class(elemntary_threat.confidentiality_impaired)}></td>
-            <td class={to_threat_measure_class(elemntary_threat.integrity_impaired)}></td>
-            <td class={to_threat_measure_class(elemntary_threat.availability_impaired)}></td>
+            <td class={to_threat_measure_class(threat.confidentiality_impaired)}></td>
+            <td class={to_threat_measure_class(threat.integrity_impaired)}></td>
+            <td class={to_threat_measure_class(threat.availability_impaired)}></td>
         </tr>
     </tbody>
 </table>
