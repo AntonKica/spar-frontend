@@ -154,3 +154,20 @@ export async function step_complete(rap_code: string, step: string) {
         alert("Pokračujte v ďalšiom kroku")
         goto(`/risk-analysis-process/${rap_code}/step`, { invalidateAll: true})
 }
+
+export const color_by_risk = (classification: any): string => {
+        if(classification === undefined) {
+            return "#ffffff";
+        }
+
+        const risk = classification.risk;
+        if(risk === 0) {
+             return "#008C27";           
+        } else if (risk === 1) {
+            return "#F6FF00";
+        } else if (risk === 2) {
+            return "#FFC800";
+        } else {
+            return "crimson"
+        }
+}

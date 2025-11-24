@@ -55,7 +55,13 @@
                 <div class="fw-normal fst-italic"><small>{threat.name}</small></div>
             </td>
             {#each threat.tour_list as tour}
-            <td class={relevance_to_class(tour)}></td>
+            <td class={relevance_to_class(tour)}>
+                {#if tour}
+                {enum_to_name(tour.relevance, data.threat_relevance_enum)}
+                {:else}
+                -
+                {/if}
+            </td>
             {/each}
         </tr>
     {/each}

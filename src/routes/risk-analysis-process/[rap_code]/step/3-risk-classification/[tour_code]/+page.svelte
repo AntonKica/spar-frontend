@@ -1,28 +1,16 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
-	import { create_post_request, enum_to_name, RISK_CLASSIFICATION_MATRIX } from '$lib';
+	import { color_by_risk, create_post_request, enum_to_name, RISK_CLASSIFICATION_MATRIX } from '$lib';
     import AssetProtectionNeedsTable from '$lib/AssetProtectionNeedsTable.svelte';
 	import ElementaryThreatImpactTable from '$lib/ElementaryThreatImpactTable.svelte';
+	import RiskMatrix from '$lib/RiskMatrix.svelte';
 	import type { PageProps } from './$types';
 	const { data }: PageProps = $props();
     
     const { tour } = data;
 
     const tour_risk_classification_list = $state(data.tour_risk_classification_list)
-    
-    const color_by_risk = (e:any): string => {
-        const risk = RISK_CLASSIFICATION_MATRIX(e);
-        if(risk === 0) {
-             return "#008000";           
-        } else if (risk === 1) {
-            return "#E4D00A";
-        } else if (risk === 2) {
-            return "#ffb700";
-        } else {
-            return "crimson"
-        }
-    }
     
     async function post(classification: any) {
 
@@ -70,6 +58,13 @@
 </div>
 <br>
 
+
+<RiskMatrix
+    threat_probability_enum = {data.threat_probability_enum}
+    threat_impact_enum = {data.threat_impact_enum}
+    threat_risk_enum = {data.threat_risk_enum}
+/>
+
 {#each tour_risk_classification_list as tour_risk_classification}
 <div class="row justify-content-between border-start border-dark text-bg-light ms-3 me-3 p-2">
     <div class="row justify-content-between">
@@ -97,7 +92,7 @@
         <div class="col-5">
             <ElementaryThreatImpactTable threat={tour_risk_classification}/>
             <b>Riziko bez dodatočných bezpečnostných opatrení:</b>
-            <em style="color: {color_by_risk(tour_risk_classification)}">
+            <em style="background-color: {color_by_risk({risk:RISK_CLASSIFICATION_MATRIX(tour_risk_classification)})}">
                 {enum_to_name(RISK_CLASSIFICATION_MATRIX(tour_risk_classification), data.threat_risk_enum)}
             </em><br>
         </div>
@@ -105,75 +100,3 @@
 </div>
 <br>
 {/each}
-<!--
-<h2>Elementárne hrozby</h2>
-{#each elementary_threat_risk_classification_list as elementary_threat_risk_classification}
-<div class="box">
-    <h3>Hrozba {enum_to_name(elementary_threat_risk_classification.tour_elementary_threat_code, data.elementary_threat_enum)}</h3>
-    <b>Frekvencia:</b>
-        <select bind:value={elementary_threat_risk_classification.frequency_of_occurrence}>
-        {#each data.frequency_of_occurrence_enum as frequency_of_occurrence}
-        <option value={frequency_of_occurrence.code}>{frequency_of_occurrence.name}</option>
-        {/each}
-        </select>
-    <br>
-
-    <b>Rozsah poškodenia:</b>
-        <select bind:value={elementary_threat_risk_classification.potential_damage}>
-        {#each data.potential_damage_enum as potential_damage}
-        <option value={potential_damage.code}>{potential_damage.name}</option>
-        {/each}
-        </select>
-    <br>
-
-    <b>Riziko bez dodatočných bezpečnostných opatrení:</b> <em class={color_by_risk(elementary_threat_risk_classification)}>{enum_to_name(
-        RISK_CLASSIFICATION_MATRIX(elementary_threat_risk_classification.frequency_of_occurrence, elementary_threat_risk_classification.potential_damage),
-    data.potential_risk_enum
-    )}
-    </em>
-     <br>
-    <b>Popis:</b><br>
-    <textarea bind:value={elementary_threat_risk_classification.description} cols=100 rows=4></textarea><br>
-
-    <b>Vyhodnotenie:</b><br>
-    <textarea bind:value={elementary_threat_risk_classification.evaluation} cols=100 rows=4></textarea><br>
-
-    <input type="button" onclick={() => update_elementary_threat_risk_classification(elementary_threat_risk_classification)} value="✔ aktualizuj">
-</div>
-{/each}
-<h2>Špecifické hrozby</h2>
-{#each specific_threat_risk_classification_list as specific_threat_risk_classification}
-<div class="box">
-    <h3>Hrozba {specific_threat_risk_classification.tour_specific_threat_code}</h3>
-    <b>Frekvencia:</b>
-        <select bind:value={specific_threat_risk_classification.frequency_of_occurrence}>
-        {#each data.frequency_of_occurrence_enum as frequency_of_occurrence}
-        <option value={frequency_of_occurrence.code}>{frequency_of_occurrence.name}</option>
-        {/each}
-        </select>
-    <br>
-
-    <b>Rozsah poškodenia:</b>
-        <select bind:value={specific_threat_risk_classification.potential_damage}>
-        {#each data.potential_damage_enum as potential_damage}
-        <option value={potential_damage.code}>{potential_damage.name}</option>
-        {/each}
-        </select>
-    <br>
-
-    <b>Riziko bez dodatočných bezpečnostných opatrení:</b> <em class={color_by_risk(specific_threat_risk_classification)}>{enum_to_name(
-        RISK_CLASSIFICATION_MATRIX(specific_threat_risk_classification.frequency_of_occurrence, specific_threat_risk_classification.potential_damage),
-    data.potential_risk_enum
-    )}
-    </em>
-     <br>
-    <b>Popis:</b><br>
-    <textarea bind:value={specific_threat_risk_classification.description} cols=100 rows=4></textarea><br>
-
-    <b>Vyhodnotenie:</b><br>
-    <textarea bind:value={specific_threat_risk_classification.evaluation} cols=100 rows=4></textarea><br>
-
-    <input type="button" onclick={() => update_specific_threat_risk_classification(specific_threat_risk_classification)} value="✔ aktualizuj">
-</div>
-{/each}
--->
