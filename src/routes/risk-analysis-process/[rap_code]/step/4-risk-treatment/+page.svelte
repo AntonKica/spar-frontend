@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
     import { page } from '$app/state'
-
 	import { enum_to_name } from '$lib';
 
 	let { data }: PageProps = $props();
 </script>
 
-<h1>Identifikácia relevantných hrozieb</h1>
+<h1>Ošetrenie rizík</h1>
 <small><a href={`/risk-analysis-process/${page.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
 <table class="table table-striped caption-top">
     <thead>
@@ -24,7 +23,7 @@
         <td>{tour.code} <a href="/organization-info/asset/{tour.code}/detail">👁</a></td>
         <td>{tour.name}</td>
         <td>{enum_to_name(tour.asset_type, data.asset_type_enum)}</td>
-        <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/2-relevant-threat-identification/${tour.code}`}>posúď hrozby</a></td>
+        <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment/${tour.code}`}>ošetri riziká</a></td>
         </tr>
 {/each}
     </tbody>

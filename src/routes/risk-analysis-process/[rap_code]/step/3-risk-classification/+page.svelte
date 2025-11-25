@@ -6,7 +6,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<h1>Identifikácia relevantných hrozieb</h1>
+<h1>klasifikácia rizik</h1>
 <small><a href={`/risk-analysis-process/${page.params.rap_code}/step`}>Vráť sa o krok vyššie.</a> </small>
 <table class="table table-striped caption-top">
     <thead>

@@ -54,4 +54,15 @@
 		</li>
 	</ul>
 </li>
+<li class={to_highlight(data.rap.process_step, 3)}>
+	klasifikácia potenciálnych rizík
+	<ul>
+		<li>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment`}>ošetrenie rizík</a>
+		</li>
+		<li>
+			<a href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment-check`}>kontrola ošetrenia rizík</a>
+		</li>
+	</ul>
+</li>
 </ol>
