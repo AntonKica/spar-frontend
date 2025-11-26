@@ -171,3 +171,21 @@ export const color_by_risk = (classification: any): string => {
             return "crimson"
         }
 }
+
+
+export async function post_with_check(request: Promise<Response>) {
+    if(!confirm("Naozaj si prajete vykonať akciu?")) {
+        return;
+    }
+    const res = await request;
+    if(res.status != 200) {
+        alert("Nastala chyba: " + res.status);
+    }
+
+    const json = await res.json()
+    if (json.status != "ok") {
+        alert("Nastala chyba" + json.message);
+        return;
+    }
+    alert("Akceptácia bola úspešne vykonaná");
+}
