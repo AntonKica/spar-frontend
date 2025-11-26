@@ -138,7 +138,7 @@
 	</div>
 </div>
 
-{#if risk_acceptance_code !== null}
+{#if risk_acceptance_code !== null && risk_acceptance_code !== undefined}
 	<label for="explanation" class="form-label">Zdôvodnenie</label>
 	<textarea class="form-control" id="explanation" rows="3" readonly>{data.risk_acceptance_list.find((f: any) => f.code == risk_acceptance_code).explanation}</textarea>
 {/if}
