@@ -15,5 +15,6 @@ export const load: LayoutLoad = async ({ params, fetch }) => {
         threat_impact_enum: enum_list.data.threat_impact.reverse(),
         threat_risk_enum: enum_list.data.threat_risk,
         risk_treatment_enum: enum_list.data.risk_treatment,
+        risk_transfer_type_enum: enum_list.data.risk_transfer_type,
 	};
 };
