@@ -1,0 +1,11 @@
+import type { PageLoad } from './$types';
+
+export const load: PageLoad = async ({ params, fetch, parent }) => {
+    const { risk_treatment } = await parent();
+	const risk_avoidance_list = await fetch(`/svc/step-4-risk-treatment/risk-avoidance/`).then(response => response.json());
+	const risk_avoidance = risk_treatment === null ? null : await fetch(`/svc/step-4-risk-treatment/risk-avoidance/${risk_treatment.treatment_code}`).then(response => response.json());
+    return {
+        risk_avoidance_list: risk_avoidance_list.data,
+        risk_avoidance: risk_avoidance?.data,
+    };
+};

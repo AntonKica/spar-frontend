@@ -12,11 +12,11 @@
 
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
-	let selected_code = $state(data.risk_acceptance?.code);
+	let selected_code = $state(data.risk_avoidance?.code);
 	let create_name = $state('');
 	let create_explanation = $state('');
 
-	async function accept_risk_with_create() {
+	async function avoid_risk_with_create() {
 		if (create_name.trim().length == 0) {
 			alert('Názov je prázdny');
 			return;
@@ -26,30 +26,29 @@
 			return;
 		}
 		await post_with_check(
-				`/svc/step-4-risk-treatment/${page.params.rap_code}/${page.params.tour_code}/${page.params.threat_code}/risk-accept`,
+				`/svc/step-4-risk-treatment/${page.params.rap_code}/${page.params.tour_code}/${page.params.threat_code}/risk-avoid`,
 				create_post_request({
 					name: create_name,
 					explanation: create_explanation
 				})
 		);
-		selected_code = null
-		await invalidateAll();
+		invalidateAll();
 	}
 
-	async function accept_risk() {
+	async function avoid_risk() {
 		if (selected_code === null) {
-			alert('Akceptácia je prázdna');
+			alert('Vyhnutie je je prázdne');
 			return;
 		}
 		await post_with_check(
-				`/svc/step-4-risk-treatment/${page.params.rap_code}/${page.params.tour_code}/${page.params.threat_code}/risk-accept/${selected_code}`,
+				`/svc/step-4-risk-treatment/${page.params.rap_code}/${page.params.tour_code}/${page.params.threat_code}/risk-avoid/${selected_code}`,
 				create_post_request_empty()
 		);
-		await invalidateAll();
+		invalidateAll();
 	}
 </script>
 
-<h1>Akceptovanie rizika {page.params.threat_code}</h1>
+<h1>Vyhnutie sa riziku {page.params.threat_code}</h1>
 
 <small
 	><a
@@ -72,7 +71,7 @@
 		data-bs-toggle="modal"
 		data-bs-target="#exampleModal"
 	>
-		Vytvor novú akceptáciu
+		Vytvor nové vyhnutie
 	</button>
 </div>
 
@@ -88,7 +87,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">Nová akceptácia</h1>
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Nové vyyhnutie</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -105,7 +104,7 @@
 					type="button"
 					class="btn btn-success"
 					data-bs-dismiss="modal"
-					onclick={accept_risk_with_create}>Pridaj novú akceptáciu</button
+					onclick={avoid_risk_with_create}>Pridaj nové vyyhnutie</button
 				>
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zruš</button>
 			</div>
@@ -113,23 +112,23 @@
 	</div>
 </div>
 
-{#if data.risk_acceptance == null}
+{#if data.risk_avoidance == null}
 	<div class="alert alert-warning d-flex align-items-center" role="alert">
 		<p>
-			(i) Toto riziko ešte nie je ošetrené jeho <b>akceptovaním</b>.
+			(i) Toto riziko ešte nie je ošetrené jeho <b>vyhnutím</b>.
 		</p>
 	</div>
 {/if}
 
 <div class="row">
 	<div class="col-auto">
-		<label for="acceptance" class="form-label">Názov akceptácie</label>
+		<label for="avoidance" class="form-label">Názov vynutia</label>
 	</div>
 	<div class="col-auto">
-		<select class="form-select" id="acceptance" bind:value={selected_code}>
-			<option value={null}>bez akceptácie</option>
-			{#each data.risk_acceptance_list as risk_acceptance}
-				<option value={risk_acceptance.code}>{risk_acceptance.name}</option>
+		<select class="form-select" id="avoidance" bind:value={selected_code}>
+			<option value={null}>bez vyhnutia</option>
+			{#each data.risk_avoidance_list as risk_avoidance}
+				<option value={risk_avoidance.code}>{risk_avoidance.name}</option>
 			{/each}
 		</select>
 	</div>
@@ -137,9 +136,9 @@
 
 {#if selected_code !== null && selected_code !== undefined}
 	<label for="explanation" class="form-label">Zdôvodnenie</label>
-	<textarea class="form-control" id="explanation" rows="3" readonly>{data.risk_acceptance_list.find((f: any) => f.code == selected_code).explanation}</textarea>
+	<textarea class="form-control" id="explanation" rows="3" readonly>{data.risk_avoidance_list.find((f: any) => f.code == selected_code).explanation}</textarea>
 {/if}
 
-<button type="button" class="btn btn-success" onclick={accept_risk}
-	>Ulož a ošetri riziko akcepovaním</button
+<button type="button" class="btn btn-success" onclick={avoid_risk}
+	>Ulož a ošetri riziko vyhnutím</button
 >

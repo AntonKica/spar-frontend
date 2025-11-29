@@ -39,7 +39,7 @@
             {/if}
         </td>
         <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment/${page.params.tour_code}/${tour_risk_classification.threat_code}/accept`}>akceptuj</a></td>
-        <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment/${page.params.tour_code}/${tour_risk_classification.threat_code}/avoida`}>vyhni sa</a></td>
+            <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment/${page.params.tour_code}/${tour_risk_classification.threat_code}/avoid`}>vyhni sa</a></td>
         <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment/${page.params.tour_code}/${tour_risk_classification.threat_code}/transfer`}>prenes</a></td>
         <td><a class="btn btn-primary" href={`/risk-analysis-process/${page.params.rap_code}/step/4-risk-treatment/${page.params.tour_code}/${tour_risk_classification.threat_code}/reduce`}>redukuj</a></td>
         </tr>

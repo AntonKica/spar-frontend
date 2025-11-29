@@ -173,11 +173,11 @@ export const color_by_risk = (classification: any): string => {
 }
 
 
-export async function post_with_check(request: Promise<Response>) {
+export async function post_with_check(url: string, body: object) {
     if(!confirm("Naozaj si prajete vykonať akciu?")) {
         return;
     }
-    const res = await request;
+    const res = await fetch(url, body);
     if(res.status != 200) {
         alert("Nastala chyba: " + res.status);
     }
