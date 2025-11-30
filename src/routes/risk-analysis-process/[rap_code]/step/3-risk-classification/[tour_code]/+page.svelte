@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import { color_by_risk, create_post_request, enum_to_name, RISK_CLASSIFICATION_MATRIX } from '$lib';
     import AssetProtectionNeedsTable from '$lib/AssetProtectionNeedsTable.svelte';
-	import ElementaryThreatImpactTable from '$lib/ElementaryThreatImpactTable.svelte';
+	import ThreatImpactTable from '$lib/ThreatImpactTable.svelte';
 	import RiskMatrix from '$lib/RiskMatrix.svelte';
 	import type { PageProps } from './$types';
 	const { data }: PageProps = $props();
@@ -90,7 +90,7 @@
             <button class="btn btn-success" onclick={() => post(tour_risk_classification)}>Uložiť klasifickáciu</button>
         </div>
         <div class="col-5">
-            <ElementaryThreatImpactTable threat={tour_risk_classification}/>
+            <ThreatImpactTable threat={tour_risk_classification}/>
             <b>Riziko bez dodatočných bezpečnostných opatrení:</b>
             <em style="background-color: {color_by_risk({risk:RISK_CLASSIFICATION_MATRIX(tour_risk_classification)})}">
                 {enum_to_name(RISK_CLASSIFICATION_MATRIX(tour_risk_classification), data.threat_risk_enum)}

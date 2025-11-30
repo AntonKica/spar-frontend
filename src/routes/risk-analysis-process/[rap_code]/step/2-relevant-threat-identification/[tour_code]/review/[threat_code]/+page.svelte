@@ -2,7 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
 	import { create_post_request } from '$lib';
-	import ElementaryThreatImpactTable from '$lib/ElementaryThreatImpactTable.svelte';
+	import ThreatImpactTable from '$lib/ThreatImpactTable.svelte';
 
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
@@ -45,7 +45,7 @@
         <b>Názov:</b> {data.threat.name}
     </div>  
     <div class="col-4">
-        <ElementaryThreatImpactTable threat={data.threat}/>
+        <ThreatImpactTable threat={data.threat}/>
     </div>
 </div>
 
