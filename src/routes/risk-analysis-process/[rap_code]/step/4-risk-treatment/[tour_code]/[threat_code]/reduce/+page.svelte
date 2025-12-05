@@ -57,7 +57,7 @@
 	}
 </script>
 
-<h1>Prenesenie rizika {page.params.threat_code}</h1>
+<h1>Redukovanie rizika {page.params.threat_code}</h1>
 
 <small
 	><a
