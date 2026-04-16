@@ -1,5 +1,9 @@
 <script lang="ts">
 	import spar_logo from '$lib/assets/spar-logo.png';
+	import 'bootstrap/dist/css/bootstrap.min.css';
+	import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+	
+
 
 	let { children } = $props();
 </script>

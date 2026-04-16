@@ -33,4 +33,4 @@ export const UI_IT_SYSTEM_LIST = (): string => `/organization-info/it-system`;
 export const UI_IT_SYSTEM_GET = (entity: any): string => `/organization-info/it-system/${entity.code}`;
 export const UI_TABLES = (): string => `/organization-info/tables`;
 
-export const UI_RISK_ANALYSIS_CREATE = (): string => `/risk-analysis-process/create`;
+export const UI_RISK_ANALYSIS_CREATE = (): string => `/risk-analysis/create`;
