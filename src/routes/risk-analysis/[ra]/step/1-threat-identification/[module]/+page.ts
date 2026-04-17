@@ -8,6 +8,7 @@ export interface ThreatModel {
     confidentiality_impaired: boolean;
     integrity_impaired: boolean;
     availability_impaired: boolean;
+    category: string;
 }
 
 export const load: PageLoad = async ({ fetch, params }) => {

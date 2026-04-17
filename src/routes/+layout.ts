@@ -7,5 +7,6 @@ export const load: LayoutLoad = async ({ params, fetch }) => {
 
 	return {
         risk_analysis_state: enum_list.risk_analysis_state,
+        threat_category: enum_list.threat_category,
 	};
 };
