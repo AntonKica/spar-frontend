@@ -20,7 +20,19 @@ export const create_delete_request = (): object => {
     }
 }
 
+
+export const categoryColors: Record<string, string> = {
+    natural_threat: 'bg-success',
+    infrastructure_failure: 'bg-secondary',
+    compromise_of_functions_and_services: 'bg-warning text-dark',
+    human_actions: 'bg-danger',
+    physical_threats: 'bg-info text-dark',
+    technical_failures: 'bg-primary',
+    organizational_threats: 'bg-dark',
+};
+
 export const enum_to_name = (code: string, l: object[]) => {
+    //console.log(`looking for ${code} in ${l}`);
     return l.find((e) => e.code == code).name;
 }
 

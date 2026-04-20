@@ -1,10 +1,8 @@
 <script lang="ts">
-    import type { LayoutData } from './$types';
+    import type { PageData } from './$types';
 
-    export let data: LayoutData;
+    export let data: PageData;
 </script>
-
-<h1>Risk Analysis: {data.ra.code}</h1>
 
 <h2>Assets</h2>
 <table class="table table-striped table-hover">
@@ -52,12 +50,6 @@
 <h2>Workflow</h2>
 
 <ol class="list-group list-group-numbered">
-    <li class="list-group-item">
-    <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification"> Threat identification </a>
-        <ol type="a" class="mt-2">
-            <li>Relevant module threats</li>
-            <li>Additional elementary threats</li>
-            <li>Specific threats</li>
-        </ol>
-    </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification"> Threat identification </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/2-risk-classification"> Risk classification </a> </li>
 </ol>

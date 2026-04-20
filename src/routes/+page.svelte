@@ -47,7 +47,7 @@
     <tr>
         <td>{ra.code}</td>
         <td>{ra.created_at}</td>
-        <td>{enum_to_name(ra.state, data.risk_analysis_state)}</td>
+        <td>{enum_to_name(ra.state, data.enums.risk_analysis_state)}</td>
         <td><a href={`/risk-analysis/${ra.code}/step`}>pozri</a></td>
     </tr>
     {/each}

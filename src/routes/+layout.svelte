@@ -28,9 +28,6 @@
 				<li class="nav-item">
 				  <a class="nav-link"href="/">Domov</a>
 				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/risk-analysis-process">Analýza rizík</a>
-				</li>
 			  </ul>
 			</div>
 		  </div>
