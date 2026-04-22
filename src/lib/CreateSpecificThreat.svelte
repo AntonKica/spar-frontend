@@ -71,6 +71,7 @@
                             <option value="physical_threats">Physical threats</option>
                             <option value="technical_failures">Technical failures</option>
                             <option value="organizational_threats">Organizational threats</option>
+                            <option value="other">Organizational threats</option>
                         </select>
                     </div>
                     <div class="mb-3">

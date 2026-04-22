@@ -52,4 +52,5 @@
 <ol class="list-group list-group-numbered">
     <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification"> Threat identification </a> </li>
     <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/2-risk-classification"> Risk classification </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/3-risk-treatment"> Risk treatment </a> </li>
 </ol>
