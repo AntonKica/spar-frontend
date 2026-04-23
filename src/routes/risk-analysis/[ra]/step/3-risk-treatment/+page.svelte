@@ -55,7 +55,7 @@
                         <td>
                             {#if hasThreatInModule(threat.code, module.code)}
                                 
-                                <a  href="{base}/{module.code}/{threat.code}"
+                                <a  href="{base}/module-threat/{module.code}/{threat.code}"
                                     class="text-decoration-none"
                                     title="Ošetrenie {threat.code} v {module.code}"
                                 >
