@@ -1,11 +1,20 @@
+<!-- src/routes/risk-analysis/[ra]/step/3-risk-treatment/+page.svelte -->
 <script lang="ts">
     import type { PageData } from './$types';
     import { page } from '$app/state';
+    import { enum_to_name } from '$lib';
 
     let { data }: { data: PageData } = $props();
 
     const ra = page.params.ra;
     const base = `/risk-analysis/${ra}/step/3-risk-treatment`;
+
+    const treatmentColors: Record<string, string> = {
+        avoid: 'bg-danger',
+        reduce: 'bg-primary',
+        transfer: 'bg-warning text-dark',
+        accept: 'bg-success',
+    };
 
     function hasThreatInModule(threatCode: string, moduleCode: string): boolean {
         return data.presenceMap[threatCode]?.includes(moduleCode) ?? false;
@@ -14,7 +23,12 @@
 
 <h2>Ošetrenie rizík</h2>
 <a href="{base}/org" class="btn btn-outline-secondary">
-    Vytvor organizačné opatrenia
+    Organizačné opatrenia
+    {#if data.orgTreatment}
+        <span class="badge {treatmentColors[data.orgTreatment.treatment]} ms-1">
+            {enum_to_name(data.orgTreatment.treatment, data.enums.treatment_type)}
+        </span>
+    {/if}
 </a>
 
 <div class="table-responsive">
@@ -33,6 +47,15 @@
                             <br />
                             <small>{threat.name}</small>
                         </a>
+                        {#if data.threatTreatments[threat.code]}
+                            <br />
+                            <span class="badge {treatmentColors[data.threatTreatments[threat.code]]}">
+                                {enum_to_name(data.threatTreatments[threat.code], data.enums.treatment_type)}
+                            </span>
+                        {:else}
+                            <br />
+                            <span class="badge bg-light text-muted">—</span>
+                        {/if}
                     </th>
                 {/each}
             </tr>
@@ -47,19 +70,32 @@
                             title="Opatrenia pre modul {module.code}"
                         >
                             {module.code}
-                            <br />
-                            <small>{module.name}</small>
                         </a>
+                        {#if data.moduleTreatments[module.code]}
+                            <br />
+                            <span class="badge {treatmentColors[data.moduleTreatments[module.code]]}">
+                                {enum_to_name(data.moduleTreatments[module.code], data.enums.treatment_type)}
+                            </span>
+                        {:else}
+                            <br />
+                            <span class="badge bg-light text-muted">—</span>
+                        {/if}
                     </th>
                     {#each data.threats as threat}
                         <td>
                             {#if hasThreatInModule(threat.code, module.code)}
                                 
-                                <a  href="{base}/module-threat/{module.code}/{threat.code}"
+                                <a    href="{base}/module-threat/{module.code}/{threat.code}"
                                     class="text-decoration-none"
                                     title="Ošetrenie {threat.code} v {module.code}"
                                 >
-                                    —
+                                    {#if data.cellTreatments[`${module.code}:${threat.code}`]}
+                                        <span class="badge {treatmentColors[data.cellTreatments[`${module.code}:${threat.code}`]]}">
+                                            {enum_to_name(data.cellTreatments[`${module.code}:${threat.code}`], data.enums.treatment_type)}
+                                        </span>
+                                    {:else}
+                                        <span class="badge bg-light text-muted">—</span>
+                                    {/if}
                                 </a>
                             {:else}
                                 <span class="text-muted">·</span>

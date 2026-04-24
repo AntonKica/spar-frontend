@@ -12,6 +12,7 @@
     let treatmentType = $state(data.treatment?.treatment ?? 'reduce');
     let selected = new SvelteSet<string>(data.linkedCodes);
     let showCreateModal = $state(false);
+    let hasExisting = $derived(data.treatment !== null);
 
     let filteredMeasures = $derived(
         data.allMeasures.filter(m => m.treatment === treatmentType)
@@ -50,20 +51,34 @@
         });
 
         if (res.ok) {
-            goto(`/risk-analysis/${ra}/step/3-risk-treatment`);
+            invalidateAll();
         }
     }
+    async function remove() {
+        const ra = page.params.ra;
+        const threat = page.params.threat;
+        const res = await fetch(
+            `/svc/risk-analysis/threat-risk-treatment/${ra}/${threat}`,
+            { method: 'DELETE' }
+        );
+
+        if (res.ok) {
+            invalidateAll();
+            selected.clear();
+        }
+    }
+
 </script>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Ošetrenie hrozby: {page.params.threat}</h2>
     <div class="d-flex gap-2">
-        
-        <a href="/risk-analysis/{page.params.ra}/step/3-risk-treatment"
-            class="btn btn-secondary"
-        >
-            Späť
-        </a>
+        {#if hasExisting}
+            <button class="btn btn-danger" onclick={remove}>
+                Odstrániť
+            </button>
+        {/if}
+
         <button class="btn btn-primary" onclick={save}>
             Uložiť ({selected.size})
         </button>

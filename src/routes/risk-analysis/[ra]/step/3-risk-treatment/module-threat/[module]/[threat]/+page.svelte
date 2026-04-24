@@ -1,4 +1,3 @@
-
 <script lang="ts">
     import { SvelteSet } from 'svelte/reactivity';
     import { page } from '$app/state';
@@ -12,6 +11,7 @@
     let treatmentType = $state(data.treatment?.treatment ?? 'reduce');
     let selected = new SvelteSet<string>(data.linkedCodes);
     let showCreateModal = $state(false);
+    let hasExisting = $derived(data.treatment !== null);
 
     let filteredMeasures = $derived(
         data.allMeasures.filter(m => m.treatment === treatmentType)
@@ -38,26 +38,64 @@
 
     async function save() {
         const ra = page.params.ra;
+        const module = page.params.module;
         const threat = page.params.threat;
 
-        const res = await fetch(`/svc/risk-analysis/sync-threat-risk-treatment/${ra}/${threat}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                treatment: treatmentType,
-                measures: [...selected],
-            }),
-        });
+        const res = await fetch(
+            `/svc/risk-analysis/sync-module-threat-risk-treatment/${ra}/${module}/${threat}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    treatment: treatmentType,
+                    measures: [...selected],
+                }),
+            }
+        );
 
         if (res.ok) {
-            goto(`/risk-analysis/${ra}/step/3-risk-treatment`);
+            invalidateAll()
+        }
+    }
+
+    async function remove() {
+        const ra = page.params.ra;
+        const module = page.params.module;
+        const threat = page.params.threat;
+
+        const res = await fetch(
+            `/svc/risk-analysis/module-threat-risk-treatment/${ra}/${module}/${threat}`,
+            { method: 'DELETE' }
+        );
+
+        if (res.ok) {
+            invalidateAll()
+            selected.clear()
         }
     }
 </script>
 
-<button class="btn btn-primary" onclick={save}>
-    Uložiť ({selected.size})
-</button>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Ošetrenie: {page.params.module} / {page.params.threat}</h2>
+    <div class="d-flex gap-2">
+        {#if hasExisting}
+            <button class="btn btn-danger" onclick={remove}>
+                Odstrániť
+            </button>
+        {/if}
+        
+        <button class="btn btn-primary" onclick={save}>
+            Uložiť ({selected.size})
+        </button>
+    </div>
+</div>
+
+{#if !hasExisting}
+    <div class="alert alert-warning mb-4">
+        Pre túto kombináciu modul/hrozba nie je definované žiadne ošetrenie rizika.
+        Vyberte typ ošetrenia a opatrenia nižšie.
+    </div>
+{/if}
 
 <div class="mb-4">
     <label for="treatment-type" class="form-label">Typ ošetrenia</label>
@@ -112,7 +150,7 @@
         {:else}
             <tr>
                 <td colspan="3" class="text-muted">
-                    Žiadne opatrenia pre typ {enum_to_name(treatmentType, data.enums.treatment_type)}
+                    Žiadne opatrenia pre typ {enum_to_name(treatmentType, data.enums.risk_treatment_type)}
                 </td>
             </tr>
         {/each}

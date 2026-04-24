@@ -1,11 +1,9 @@
 <script lang="ts">
     import { SvelteSet } from 'svelte/reactivity';
     import { page } from '$app/state';
-    import { goto, invalidateAll } from '$app/navigation';
+    import { invalidateAll } from '$app/navigation';
     import type { PageData } from './$types';
     import CreateSecurityMeasure from '$lib/CreateSecurityMeasure.svelte';
-
-    // ... existing code ...
 
     let showCreateModal = $state(false);
 
@@ -32,7 +30,7 @@
         });
 
         if (res.ok) {
-            goto(`/risk-analysis/${ra}/step/3-risk-treatment`);
+            invalidateAll();
         }
     }
 </script>
@@ -43,12 +41,6 @@
         <button class="btn btn-outline-primary" onclick={() => showCreateModal = true}>
             Nové opatrenie
         </button>
-        
-        <a href="/risk-analysis/{page.params.ra}/step/3-risk-treatment"
-            class="btn btn-secondary"
-        >
-            Späť
-        </a>
         <button class="btn btn-primary" onclick={save}>
             Uložiť ({selected.size})
         </button>

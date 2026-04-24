@@ -73,14 +73,12 @@
                     <span class="nav-link d-inline p-0 text-light">
                         {page.params.module} x {page.params.threat}
                     </span>
-                {/if}
-                {#if page.params.module}
+                {:else if page.params.module}
                     <span class="text-secondary">&gt;</span>
                     <span class="nav-link d-inline p-0 text-light">
                         {page.params.module}
                     </span>
-                {/if}
-                {#if page.params.threat}
+                {:else if page.params.threat}
                     <span class="text-secondary">&gt;</span>
                     <span class="nav-link d-inline p-0 text-light">
                         {page.params.threat}
