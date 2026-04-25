@@ -2,6 +2,10 @@
     import type { PageData } from './$types';
 
     export let data: PageData;
+
+    let state_to_color_link = (state:string) => {
+        return state === data.ra.state ? "link-primary" : "link-secondary";
+    }
 </script>
 
 <h2>Assets</h2>
@@ -50,7 +54,8 @@
 <h2>Workflow</h2>
 
 <ol class="list-group list-group-numbered">
-    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification"> Threat identification </a> </li>
-    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/2-risk-classification"> Risk classification </a> </li>
-    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/3-risk-treatment"> Risk treatment </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification" class={state_to_color_link("threat_identification")}> Threat identification </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/2-risk-classification" class={state_to_color_link("risk_classification")}> Risk classification </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/3-risk-treatment" class={state_to_color_link("risk_treatment")}> Risk treatment </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/4-it-grundschutz-check" class={state_to_color_link("it_grundschutz_check")}> It Grundschut check </a> </li>
 </ol>
