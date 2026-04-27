@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { PageData } from './$types';
     import { enum_to_name } from '$lib';
+	import CompleteStepButton from '$lib/CompleteStepButton.svelte';
 
     let { data }: { data: PageData } = $props();
 
@@ -38,6 +39,10 @@
     }
 </script>
 
+<CompleteStepButton
+    state="risk_classification"
+    label="Dokončiť klasifikáciu rizík"
+/>
 
 <h2>Matica rizík</h2>
 

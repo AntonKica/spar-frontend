@@ -3,6 +3,7 @@
     import type { PageData } from './$types';
     import { page } from '$app/state';
     import { enum_to_name } from '$lib';
+	import CompleteStepButton from '$lib/CompleteStepButton.svelte';
 
     let { data }: { data: PageData } = $props();
 
@@ -22,8 +23,9 @@
 </script>
 
 <h2>Ošetrenie rizík</h2>
+<CompleteStepButton state="risk_treatment" label="Dokončiť ošetrenie rizík" />
 <a href="{base}/org" class="btn btn-outline-secondary">
-    Organizačné opatrenia
+    Spravuj organizačné opatrenia
     {#if data.orgTreatment}
         <span class="badge {treatmentColors[data.orgTreatment.treatment]} ms-1">
             {enum_to_name(data.orgTreatment.treatment, data.enums.treatment_type)}

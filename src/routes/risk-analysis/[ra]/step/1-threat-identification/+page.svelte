@@ -1,20 +1,9 @@
-<!-- src/routes/risk-analysis/[ra]/step/threat-identification/+page.svelte -->
 <script lang="ts">
     import type { PageData } from './$types';
-    import { page } from '$app/state';
     import { enum_to_name } from '$lib';
-	import { goto } from '$app/navigation';
+	import CompleteStepButton from '$lib/CompleteStepButton.svelte';
 
     export let data: PageData;
-    async function completeStep() {
-        const res = await fetch(`/svc/risk-analysis/complete-step/${page.params.ra}/threat_identification`, {
-            method: 'POST',
-        });
-
-        if (res.ok) {
-            goto(`/risk-analysis/${page.params.ra}/step`);
-        }
-    }
 </script>
 
 
@@ -50,7 +39,11 @@
 </table>
 
 <h2>Summary</h2>
-<button class="btn btn-primary" onclick={completeStep}>Complete threat identification</button>
+<CompleteStepButton
+    state="threat_identification"
+    label="Dokončiť identifikáciu hrozieb"
+/>
+
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">

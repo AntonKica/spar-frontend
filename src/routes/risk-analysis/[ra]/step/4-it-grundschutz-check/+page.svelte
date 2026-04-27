@@ -5,6 +5,7 @@
     import { invalidateAll } from '$app/navigation';
     import ItGrundschutzCheckRow from '$lib/ItGrundschutzCheckRow.svelte';
     import { enum_to_name } from '$lib';
+	import CompleteStepButton from '$lib/CompleteStepButton.svelte';
 
     let { data }: { data: PageData } = $props();
     const treatmentColors: Record<string, string> = {
@@ -23,6 +24,7 @@
     <div class="alert alert-success mb-4">
         Všetky opatrenia boli ohodnotené.
     </div>
+    <CompleteStepButton state="it_grundschutz_check" label="Dokončiť ošetrenie rizík" />
 {:else}
     <div class="alert alert-warning mb-4">
         Niektoré opatrenia ešte neboli ohodnotené.

@@ -58,4 +58,5 @@
     <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/2-risk-classification" class={state_to_color_link("risk_classification")}> Risk classification </a> </li>
     <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/3-risk-treatment" class={state_to_color_link("risk_treatment")}> Risk treatment </a> </li>
     <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/4-it-grundschutz-check" class={state_to_color_link("it_grundschutz_check")}> It Grundschut check </a> </li>
+    <li class="list-group-item"> <a href="/risk-analysis/{data.ra.code}/step/5-summary" class={state_to_color_link("done")}> Zhrnutie </a> </li>
 </ol>

@@ -35,6 +35,15 @@ export const enum_to_name = (code: string, l: object[]) => {
     //console.log(`looking for ${code} in ${l}`);
     return l.find((e) => e.code == code).name;
 }
+export async function completeStep(ra: string) {
+    const res = await fetch(`/svc/risk-analysis/complete-step/${ra}/threat_identification`, {
+        method: 'POST',
+    });
+
+    if (res.ok) {
+        goto(`/risk-analysis/${ra}/step`);
+    }
+}
 
 
 class UiRiskAnalysissProcessWorkflow {
