@@ -1,4 +1,3 @@
-<!-- src/routes/risk-analysis/[ra]/step/4-it-grundschutz-check/+page.svelte -->
 <script lang="ts">
     import { page } from '$app/state';
     import type { PageData } from './$types';

@@ -1,8 +1,8 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-	import type { pageprops } from './$types';
+	import type { PageProps } from './$types';
 	import { enum_to_name, create_post_request_empty } from '$lib';
-	let { data }: pageprops = $props();
+	let { data }: PageProps = $props();
 
     async function create_risk_analysis() {
         const res = await fetch('/svc/risk-analysis', create_post_request_empty())

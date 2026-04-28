@@ -2,8 +2,10 @@
     import type { PageData } from './$types';
     import { enum_to_name } from '$lib';
 	import CompleteStepButton from '$lib/CompleteStepButton.svelte';
+	import RiskAnalysisCopyStepModal from '$lib/RiskAnalysisCopyStepModal.svelte';
+	import RiskAnalysisCopyStepButton from '$lib/RiskAnalysisCopyStepButton.svelte';
 
-    export let data: PageData;
+    let { data }: { data: PageData } = $props();
 </script>
 
 
@@ -42,6 +44,11 @@
 <CompleteStepButton
     state="threat_identification"
     label="Dokončiť identifikáciu hrozieb"
+/>
+
+<RiskAnalysisCopyStepButton
+    ra_state="threat_identification"
+    ra_list={data.ra_list}
 />
 
 

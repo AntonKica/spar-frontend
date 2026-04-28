@@ -4,6 +4,7 @@
     import { page } from '$app/state';
     import { enum_to_name } from '$lib';
 	import CompleteStepButton from '$lib/CompleteStepButton.svelte';
+	import RiskAnalysisCopyStepButton from '$lib/RiskAnalysisCopyStepButton.svelte';
 
     let { data }: { data: PageData } = $props();
 
@@ -24,6 +25,10 @@
 
 <h2>Ošetrenie rizík</h2>
 <CompleteStepButton state="risk_treatment" label="Dokončiť ošetrenie rizík" />
+<RiskAnalysisCopyStepButton
+    ra_state="risk_treatment"
+    ra_list={data.ra_list}
+/>
 <a href="{base}/org" class="btn btn-outline-secondary">
     Spravuj organizačné opatrenia
     {#if data.orgTreatment}
