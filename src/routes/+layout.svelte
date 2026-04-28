@@ -28,6 +28,9 @@
 				<li class="nav-item">
 				  <a class="nav-link"href="/">Domov</a>
 				</li>
+				<li class="nav-item">
+				  <a class="nav-link"href="/organization-info/asset">Aktíva</a>
+				</li>
 			  </ul>
 			</div>
 		  </div>

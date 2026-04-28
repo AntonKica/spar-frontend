@@ -85,6 +85,24 @@
                     </span>
                 {/if}
             {/if}
+            {#if page.url.pathname.includes('/step/4-it-grundschutz-check')}
+                <span class="text-secondary">&gt;</span>
+                <a
+                    class:active={page.url.pathname.includes('/step/4-it-grundschutz-check')}
+                    href="/risk-analysis/{data.ra.code}/step/4-it-grundschutz-check"
+                >
+                Kontrola implementácie
+                </a>
+            {/if}
+            {#if page.url.pathname.includes('/step/5-summary')}
+                <span class="text-secondary">&gt;</span>
+                <a
+                    class:active={page.url.pathname.includes('/step/5-summary')}
+                    href="/risk-analysis/{data.ra.code}/step/5-summary"
+                >
+                Zhrnutie
+                </a>
+            {/if}
         </div>
     </div>
 </nav>
