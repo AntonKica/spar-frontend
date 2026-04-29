@@ -1,4 +1,3 @@
-import type { RouteParams } from "$app/types"
 import { goto } from '$app/navigation';
 
 export const create_post_request = (entity: object): object => {

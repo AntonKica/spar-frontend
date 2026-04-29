@@ -42,9 +42,6 @@
 </script>
 
 {#if show}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div class="modal d-block" tabindex="-1" onclick={(e) => { if (e.target === e.currentTarget) close(); }}>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

@@ -7,3 +7,8 @@ export interface Threat {
     availability_impaired: boolean;
     category: string;
 }
+export interface Requirement {
+    code: string;
+    module: string;
+    description: string;
+}

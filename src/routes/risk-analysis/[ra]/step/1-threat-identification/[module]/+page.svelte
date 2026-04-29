@@ -39,23 +39,19 @@
     }
 </script>
 
-<h2>Threat identification: {module}</h2>
-<button class="btn btn-primary" onclick={saveThreats}>
-            Save ({selectedThreats.size})
-        </button>
-<button class="btn btn-success" onclick={markDone}>
-    Mark as done
-</button>
+<h2>Identifikácia relevantných hrozieb: {module}</h2>
+<button class="btn btn-primary" onclick={saveThreats}> Uložiť ({selectedThreats.size}) </button>
+<button class="btn btn-success" onclick={markDone}> Označiť ako dokončené </button>
 
 
-<h3>Relevant module threats</h3>
+<h3>Relevantné základné hrozby pre modul</h3>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th style="width: 10%;">Code</th>
-            <th style="width: 40%;">Name</th>
-            <th style="width: 25%;">Category</th>
+            <th style="width: 10%;">Kód</th>
+            <th style="width: 40%;">Názov</th>
+            <th style="width: 25%;">Kategória</th>
             <th style="width: 5%;">C</th>
             <th style="width: 5%;">I</th>
             <th style="width: 5%;">A</th>
@@ -76,7 +72,7 @@
                         class="btn btn-sm {selectedThreats.has(threat.code) ? 'btn-danger' : 'btn-outline-primary'}"
                         onclick={() => toggle(threat.code)}
                     >
-                        {selectedThreats.has(threat.code) ? 'Remove' : 'Add'}
+                        {selectedThreats.has(threat.code) ? 'Vymaž' : 'Pridaj'}
                     </button>
                 </td>
             </tr>
@@ -86,14 +82,14 @@
     </tbody>
 </table>
 
-<h3>Additional elementary threats</h3>
+<h3>Dodatočné základné hrozby</h3>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th style="width: 10%;">Code</th>
-            <th style="width: 40%;">Name</th>
-            <th style="width: 25%;">Category</th>
+            <th style="width: 10%;">Kód</th>
+            <th style="width: 40%;">Názov</th>
+            <th style="width: 25%;">Kategória</th>
             <th style="width: 5%;">C</th>
             <th style="width: 5%;">I</th>
             <th style="width: 5%;">A</th>
@@ -114,21 +110,21 @@
                         class="btn btn-sm {selectedThreats.has(threat.code) ? 'btn-danger' : 'btn-outline-primary'}"
                         onclick={() => toggle(threat.code)}
                     >
-                        {selectedThreats.has(threat.code) ? 'Remove' : 'Add'}
+                        {selectedThreats.has(threat.code) ? 'Vymaž' : 'Pridaj'}
                     </button>
                 </td>
             </tr>
         {:else}
-            <tr><td colspan="6" class="text-muted">No additional elementary threats</td></tr>
+            <tr><td colspan="6" class="text-muted">Žiadne dodatočné elementárne hrozby</td></tr>
         {/each}
     </tbody>
 </table>
 
-<h3>Specific threats
+<h3>Špecifické hrozby
 
 
     <button class="btn btn-outline-primary btn-sm" onclick={() => showModal = true}>
-        Create new specific threat
+        Vytvor novú špecifickú hrozbu
     </button>
 </h3>
 
@@ -141,9 +137,9 @@
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th style="width: 10%;">Code</th>
-            <th style="width: 40%;">Name</th>
-            <th style="width: 25%;">Category</th>
+            <th style="width: 10%;">Kód</th>
+            <th style="width: 40%;">Názov</th>
+            <th style="width: 25%;">Kategória</th>
             <th style="width: 5%;">C</th>
             <th style="width: 5%;">I</th>
             <th style="width: 5%;">A</th>
@@ -164,12 +160,12 @@
                         class="btn btn-sm {selectedThreats.has(threat.code) ? 'btn-danger' : 'btn-outline-primary'}"
                         onclick={() => toggle(threat.code)}
                     >
-                        {selectedThreats.has(threat.code) ? 'Remove' : 'Add'}
+                        {selectedThreats.has(threat.code) ? 'Vymaž' : 'Pridaj'}
                     </button>
                 </td>
             </tr>
         {:else}
-            <tr><td colspan="6" class="text-muted">No specific threats</td></tr>
+            <tr><td colspan="6" class="text-muted">Žiadne špecifické hrozby</td></tr>
         {/each}
     </tbody>
 </table>

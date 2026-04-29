@@ -12,9 +12,9 @@
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>Module</th>
-            <th>Name</th>
-            <th>Status</th>
+            <th>Modul</th>
+            <th>Názov</th>
+            <th>Stav</th>
             <th></th>
         </tr>
     </thead>
@@ -25,22 +25,20 @@
                 <td>{module.name}</td>
                 <td>
                     {#if module.done}
-                        <span class="badge bg-success">done</span>
+                        <span class="badge bg-success">ukončený</span>
                     {:else}
-                        <span class="badge bg-warning text-dark">pending</span>
+                        <span class="badge bg-warning text-dark">čakajúci</span>
                     {/if}
                 </td>
                 <td>
-                    <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification/{module.code}">
-                        {module.done ? 'review' : 'start'}
-                    </a>
+                    <a href="/risk-analysis/{data.ra.code}/step/1-threat-identification/{module.code}">posúď </a>
                 </td>
             </tr>
         {/each}
     </tbody>
 </table>
 
-<h2>Summary</h2>
+<h2>Zhrnutie identifikovaných hrozieb</h2>
 <CompleteStepButton
     state="threat_identification"
     label="Dokončiť identifikáciu hrozieb"
@@ -55,7 +53,7 @@
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>Threat</th>
+            <th>Hrozba</th>
             {#each data.modules as module}
                 <th class="text-center">{module.code}</th>
             {/each}
@@ -80,7 +78,7 @@
             {/each}
         {:else}
             <tr>
-                <td colspan={1 + data.modules.length} class="text-muted">No threats selected</td>
+                <td colspan={1 + data.modules.length} class="text-muted">Neboli zvolené žiadne hrozby</td>
             </tr>
         {/each}
     </tbody>

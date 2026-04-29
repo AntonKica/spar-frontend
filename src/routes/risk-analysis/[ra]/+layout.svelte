@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center gap-2">
             <a class="navbar-brand mb-0" href="/risk-analysis/{data.ra.code}/step">
-                Risk analysis: {data.ra.code}
+                Analýza rizík: {data.ra.code}
             </a>
             {#if page.url.pathname.includes('/step/1-threat-identification')}
                 <span class="text-secondary">&gt;</span>
@@ -17,7 +17,7 @@
                     class="nav-link d-inline p-0 text-light"
                     href="/risk-analysis/{data.ra.code}/step/1-threat-identification"
                 >
-                    Threat identification
+                    Identifikácia relevantných hrozieb
                 </a>
                 {#if page.params.module}
                     <span class="text-secondary">&gt;</span>
@@ -31,7 +31,7 @@
                         class="nav-link d-inline p-0 text-light"
                         href="/risk-analysis/{data.ra.code}/step/1-threat-identification/summary"
                     >
-                        Summary
+                        Prehľad
                     </a>
                 {/if}
 
