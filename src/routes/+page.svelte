@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
 	import type { PageProps } from './$types';
-	import { enum_to_name, create_post_request_empty } from '$lib';
+	import { enum_to_name, create_post_request_empty, format_date } from '$lib';
 	let { data }: PageProps = $props();
 
     async function create_risk_analysis() {
@@ -46,7 +46,7 @@
     {#each data.ra_list as ra}
     <tr>
         <td>{ra.code}</td>
-        <td>{ra.created_at}</td>
+        <td>{format_date(ra.created_at)}</td>
         <td>{enum_to_name(ra.state, data.enums.risk_analysis_state)}</td>
         <td><a href={`/risk-analysis/${ra.code}/step`}>pozri</a></td>
     </tr>

@@ -31,6 +31,12 @@
 				<li class="nav-item">
 				  <a class="nav-link"href="/organization-info/asset">Aktíva</a>
 				</li>
+				<li class="nav-item">
+				  <a class="nav-link"href="/bsi-it-grundschutz-module">Moduly GSK</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link"href="/bsi-it-grundschutz-elementary-threat">Hrozby GSK</a>
+				</li>
 			  </ul>
 			</div>
 		  </div>

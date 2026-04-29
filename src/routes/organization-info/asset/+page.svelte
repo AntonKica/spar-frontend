@@ -22,12 +22,10 @@
     }
 </script>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Aktíva</h1>
     <button class="btn btn-primary" onclick={() => showCreateModal = true}>
         Nové aktívum
     </button>
-</div>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">

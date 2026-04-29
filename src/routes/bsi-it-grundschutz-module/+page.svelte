@@ -1,24 +1,31 @@
+<!-- src/routes/it-grundschutz-module/+page.svelte -->
 <script lang="ts">
-	import type { PageProps } from './$types';
-	import {UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_GET} from '$lib/routes';
-	let { data }: PageProps = $props();
+    import type { PageData } from './$types';
+
+    let { data }: { data: PageData } = $props();
 </script>
 
-<h1>Moduly BSI IT-Grundschutz Kompendium</h1>
+<h1>IT-Grundschutz moduly</h1>
 
-<table>
-    <thead>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
         <tr>
-            <td>názov</td>
-            <td></td>
+            <th>Kód</th>
+            <th>Názov</th>
+            <th>Popis</th>
         </tr>
     </thead>
     <tbody>
-    {#each data.data as module}
-    <tr>
-        <td>{module.name}</td>
-        <td><a href={UI_ENUM_BSI_IT_GRUNDSHUTZ_MODULE_GET(module)}>pozri</a></td>
-    </tr>
-    {/each}
+        {#each data.modules as module}
+            <tr>
+                <td> <a href="/bsi-it-grundschutz-module/{module.code}"> {module.code} </a></td>
+                <td>{module.name}</td>
+                <td>{module.description}</td>
+            </tr>
+        {:else}
+            <tr>
+                <td colspan="3" class="text-muted">Žiadne moduly</td>
+            </tr>
+        {/each}
     </tbody>
 </table>
