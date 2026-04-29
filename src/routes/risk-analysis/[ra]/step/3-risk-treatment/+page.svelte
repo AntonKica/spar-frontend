@@ -50,7 +50,7 @@
                             class="text-light text-decoration-none"
                             title="Ošetrenie hrozby {threat.code}"
                         >
-                            {threat.code}Risk treatment
+                            {threat.code}
                             <br />
                             <small>{threat.name}</small>
                         </a>

@@ -42,7 +42,7 @@
                     class="nav-link d-inline p-0 text-light"
                     href="/risk-analysis/{data.ra.code}/step/2-risk-classification"
                 >
-                    Risk classification
+                    Klasifikácia rizík
                 </a>
                 {#if page.params.module && page.params.threat}
                     <span class="text-secondary">&gt;</span>
@@ -57,7 +57,7 @@
                     class:active={page.url.pathname.includes('/step/3-risk-treatment')}
                     href="/risk-analysis/{data.ra.code}/step/3-risk-treatment"
                 >
-                    Risk treatment
+                    Ošetrenie rizík
                 </a>
                 {#if page.url.pathname.includes('/step/3-risk-treatment/org')}
                     <span class="text-secondary">&gt;</span>
@@ -65,7 +65,7 @@
                         class:active={page.url.pathname.includes('/step/3-risk-treatment/org')}
                         href="/risk-analysis/{data.ra.code}/step/3-risk-treatment/org"
                     >
-                        Organisation wide security measures
+                        Organizačné bezpečnostné opatrenia
                     </a>
                 {/if}
                 {#if page.params.module && page.params.threat}
