@@ -130,6 +130,7 @@
 
 <CreateThreatModal
     show={showModal}
+    enums={data.enums}
     oncreated={() => { showModal = false; invalidateAll(); }}
     onclose={() => showModal = false}
 />

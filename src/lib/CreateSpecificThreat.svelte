@@ -1,8 +1,9 @@
 <script lang="ts">
-    let { show, oncreated, onclose }: {
+    let { show, oncreated, onclose, enums }: {
         show: boolean;
         oncreated: () => void;
         onclose: () => void;
+        enums: { risk_treatment_type: { code: string; name: string }[] };
     } = $props();
 
     let newThreat = $state({
@@ -49,50 +50,45 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">New specific threat</h5>
+                    <h5 class="modal-title">Nová špecifická hrozba</h5>
                     <button type="button" class="btn-close" onclick={close}></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">Názov</label>
                         <input type="text" class="form-control" id="name" bind:value={newThreat.name} />
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">Popis</label>
                         <textarea class="form-control" id="description" rows="3" bind:value={newThreat.description}></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
+                        <label for="category" class="form-label">Kategória</label>
                         <select class="form-select" id="category" bind:value={newThreat.category}>
-                            <option value="natural_threat">Natural threats</option>
-                            <option value="infrastructure_failure">Infrastructure failures</option>
-                            <option value="compromise_of_functions_and_services">Compromise of functions and services</option>
-                            <option value="human_actions">Human actions</option>
-                            <option value="physical_threats">Physical threats</option>
-                            <option value="technical_failures">Technical failures</option>
-                            <option value="organizational_threats">Organizational threats</option>
-                            <option value="other">Organizational threats</option>
+                            {#each enums.threat_category as tc}
+                            <option value={tc.code}>{tc.name}</option>
+                            {/each}
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Impact</label>
+                        <label class="form-label">Dopad</label>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="cia-c" bind:checked={newThreat.confidentiality_impaired} />
-                            <label class="form-check-label" for="cia-c">Confidentiality</label>
+                            <label class="form-check-label" for="cia-c">Dôvernosť</label>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="cia-i" bind:checked={newThreat.integrity_impaired} />
-                            <label class="form-check-label" for="cia-i">Integrity</label>
+                            <label class="form-check-label" for="cia-i">Integrita</label>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="cia-a" bind:checked={newThreat.availability_impaired} />
-                            <label class="form-check-label" for="cia-a">Availability</label>
+                            <label class="form-check-label" for="cia-a">Dostupnosť</label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick={close}>Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick={create} disabled={!newThreat.name}>Create</button>
+                    <button type="button" class="btn btn-secondary" onclick={close}>Zruš</button>
+                    <button type="button" class="btn btn-primary" onclick={create} disabled={!newThreat.name}>Vytvor</button>
                 </div>
             </div>
         </div>
