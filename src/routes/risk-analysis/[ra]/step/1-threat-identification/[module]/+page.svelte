@@ -7,8 +7,6 @@
     import CreateThreatModal from '$lib/CreateSpecificThreat.svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 
-    // ... existing code ...
-
     let showModal = $state(false);
     let { data }: { data: PageData } = $props();
     let selectedThreats: Set<string> = new SvelteSet(data.selectedCodes);
@@ -121,8 +119,6 @@
 </table>
 
 <h3>Špecifické hrozby
-
-
     <button class="btn btn-outline-primary btn-sm" onclick={() => showModal = true}>
         Vytvor novú špecifickú hrozbu
     </button>
